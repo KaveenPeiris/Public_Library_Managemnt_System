@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashbord.DashbordController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashbord.DashbordController">
 
     <!-- Top Header Bar -->
     <top>
@@ -49,19 +49,19 @@
                 <!-- Navigation Buttons -->
                 <VBox spacing="15">
                     <children>
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showAddBook" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showAddMember" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showManageMember" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showIssueBook" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showReturnBook" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showHistory" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
+                        <Button fx:id="btnAddBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#AddBookOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
+                        <Button fx:id="btnAddMember" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
+                        <Button fx:id="btnManageMembers" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
+                        <Button fx:id="btnIssuBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnIssuBooksOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
+                        <Button fx:id="btnReturnBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnReturnBookOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
+                        <Button fx:id="btnBorrowingHistory" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnBorrowingHistoryOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
                     </children>
                 </VBox>
 
                 <Pane VBox.vgrow="ALWAYS" />
 
                 <!-- Log Out Button -->
-                <Button maxWidth="100.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="32.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Log Out" />
+                <Button fx:id="btnLogOut" maxWidth="100.0" mnemonicParsing="false" onAction="#BtnLogOutOnAction" prefHeight="32.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Log Out" />
             </children>
         </VBox>
     </left>
