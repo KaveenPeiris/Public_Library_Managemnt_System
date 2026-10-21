@@ -104,7 +104,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <!-- Book ID / ISBN -->
+                                <!-- Book ID / ISBN with Generate Button -->
                                 <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                     <children>
                                         <Label text="Book ID / ISBN" textFill="#2c3e50">
@@ -112,7 +112,12 @@
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="txtBookId" promptText="Enter Book ID / ISBN" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" />
+                                        <HBox spacing="8.0" alignment="CENTER_LEFT">
+                                            <children>
+                                                <TextField fx:id="txtBookId" promptText="Enter Book ID / ISBN" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="btnGenerateId" mnemonicParsing="false" onAction="#btnGenerateIdOnAction" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 12px;" text="Generate" />
+                                            </children>
+                                        </HBox>
                                     </children>
                                 </VBox>
 
@@ -140,7 +145,7 @@
                                     </children>
                                 </VBox>
 
-                                <!-- Category Dropdown -->
+                                <!-- Category -->
                                 <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <children>
                                         <Label text="Category" textFill="#2c3e50">

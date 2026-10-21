@@ -31,8 +31,16 @@ public class AddBookController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Page එක load වන විට ComboBox එකට categories ලැයිස්තුව ඇතුළත් කිරීම
+
         txtCategory.setItems(categoryList());
+
+        txtCategory.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                txtBookId.setText(generateBookId(newValue));
+            }
+        });
+
+
     }
 
     public ObservableList<String> categoryList() {
@@ -51,7 +59,7 @@ public class AddBookController implements Initializable {
             System.out.println("Could Not Find the Category in DB: " + e.getMessage());
         }
 
-        // Database එකෙන් දත්ත හමු නොවුණහොත් පෙරනිමි (Default) ලැයිස්තුව පෙන්වීමට
+
         if (categoryList.isEmpty()) {
             categoryList.addAll("Romance", "Fantasy", "Science Fiction", "Mystery & Crime",
                     "Thriller & Suspense", "Horror", "Historical Fiction",
@@ -156,8 +164,9 @@ public class AddBookController implements Initializable {
     }
 
     public boolean addBook(String bookId, String title, String author, String category, int publishedYear, int quantity) {
-        String SQL = "INSERT INTO books (book_id, title, author, category, published_year, quantity) VALUES (?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO books (book_id, book_title, author, category, published_year, quantity) VALUES (?, ?, ?, ?, ?, ?)";
         try {
+
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setString(1, bookId);
             preparedStatement.setString(2, title);
@@ -171,5 +180,8 @@ public class AddBookController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void btnGenerateIdOnAction(ActionEvent actionEvent) {
     }
 }
