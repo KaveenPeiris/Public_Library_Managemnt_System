@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.AddBookController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.AddBookController">
 
-    <!-- Top Header Bar (Main Dashboard Style) -->
+    <!-- Top Header Bar -->
     <top>
         <HBox alignment="CENTER" prefHeight="50.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
             <children>
@@ -71,11 +71,10 @@
         </VBox>
     </left>
 
-    <!-- Center Area (Add Book Form) -->
+    <!-- Center Area -->
     <center>
         <BorderPane style="-fx-background-color: #f4f7f6;" BorderPane.alignment="CENTER">
             <top>
-                <!-- Title Bar matching Main Dashboard -->
                 <HBox alignment="CENTER_LEFT" prefHeight="45.0" style="-fx-background-color: #34495e; -fx-padding: 0 20;">
                     <children>
                         <Label text="Add Book" textFill="WHITE">
@@ -88,92 +87,92 @@
             </top>
 
             <center>
-                <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                     <padding>
-                        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+                        <Insets bottom="20.0" left="40.0" right="40.0" top="25.0" />
                     </padding>
                     <children>
                         <!-- Form Fields Grid -->
-                        <GridPane hgap="30.0" vgap="20.0">
+                        <GridPane hgap="30.0" vgap="15.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="350.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="350.0" />
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
                                 <!-- Book ID / ISBN -->
-                                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                     <children>
                                         <Label text="Book ID / ISBN" textFill="#2c3e50">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="txtBookId" promptText="Enter Book ID / ISBN" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 10px;" />
+                                        <TextField fx:id="txtBookId" promptText="Enter Book ID / ISBN" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" />
                                     </children>
                                 </VBox>
 
                                 <!-- Book Title -->
-                                <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                     <children>
                                         <Label text="Book Title" textFill="#2c3e50">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <TextField id="txtBookTitle" fx:id="txtBookTitle" promptText="Enter Book Title" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 10px;" />
+                                        <TextField fx:id="txtBookTitle" promptText="Enter Book Title" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" />
                                     </children>
                                 </VBox>
 
                                 <!-- Author -->
-                                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                     <children>
                                         <Label text="Author" textFill="#2c3e50">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <TextField id="txtAuthorName" fx:id="txtAuthorName" promptText="Enter Author Name" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 10px;" />
+                                        <TextField fx:id="txtAuthorName" promptText="Enter Author Name" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" />
                                     </children>
                                 </VBox>
 
-                                <!-- Category -->
-                                <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <!-- Category Dropdown -->
+                                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <children>
                                         <Label text="Category" textFill="#2c3e50">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                              <ComboBox prefHeight="40.0" prefWidth="356.0" promptText="Select The Book Category" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 6px;" />
+                                        <ComboBox fx:id="txtCategory" prefHeight="36.0" prefWidth="356.0" promptText="Select The Book Category" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
                                     </children>
                                 </VBox>
 
                                 <!-- Published Year -->
-                                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
                                     <children>
                                         <Label text="Published Year" textFill="#2c3e50">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                              <DatePicker prefHeight="26.0" prefWidth="347.0" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" />
+                                        <DatePicker fx:id="datepublishyear" prefHeight="36.0" prefWidth="347.0" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
                                     </children>
                                 </VBox>
 
                                 <!-- Quantity -->
-                                <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                     <children>
                                         <Label text="Quantity" textFill="#2c3e50">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="txtQuantity" promptText="Enter Quantity" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 10px;" />
+                                        <TextField fx:id="txtQuantity" promptText="Enter Quantity" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" />
                                     </children>
                                 </VBox>
                             </children>

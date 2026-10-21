@@ -15,6 +15,7 @@ public class AddBookPageController {
 
     public ObservableList<String> category() {
         ObservableList<String> categoryList = FXCollections.observableArrayList();
+
         String sql = "SELECT category_id, category_name FROM category ORDER BY category_id ASC";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -70,15 +71,18 @@ public class AddBookPageController {
 
         return prefix + "001";
     }
-    public boolean addbook(int book_id , String book_tital, String author, String category,String publish_year,int quantity){
+    public boolean addBook(String bookId, String bookTitle, String author, String category, int publishYear, int quantity) {
+        Connection connection1 = DBConnection.getInstance().getConnection();
+        String sql = "INSERT INTO books (book_id, title, author, category, published_year, quantity) VALUES (?, ?, ?, ?, ?, ?)";
+
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setInt(1,book_id);
-            preparedStatement.setString(2,book_tital);
-            preparedStatement.setString(3,author);
-            preparedStatement.setString(4,category);
-            preparedStatement.setString(5,publish_year);
-            preparedStatement.setInt(7,quantity);
+            PreparedStatement preparedStatement = connection1.prepareStatement(sql);
+            preparedStatement.setString(1, bookId);
+            preparedStatement.setString(2, bookTitle);
+            preparedStatement.setString(3, author);
+            preparedStatement.setString(4, category);
+            preparedStatement.setInt(5, publishYear);
+            preparedStatement.setInt(6, quantity); // Fixed from index 7 to 6
 
             return preparedStatement.executeUpdate() > 0;
 
