@@ -70,4 +70,22 @@ public class AddBookPageController {
 
         return prefix + "001";
     }
+    public boolean addbook(int book_id , String book_tital, String author, String category,String publish_year,int quantity){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1,book_id);
+            preparedStatement.setString(2,book_tital);
+            preparedStatement.setString(3,author);
+            preparedStatement.setString(4,category);
+            preparedStatement.setString(5,publish_year);
+            preparedStatement.setInt(7,quantity);
+
+            return preparedStatement.executeUpdate() > 0;
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
