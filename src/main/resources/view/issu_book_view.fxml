@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.ViewIssueBookController">
+
+    <!-- Top Header Bar -->
+    <top>
+        <HBox alignment="CENTER" prefHeight="50.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Public Library Management" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox prefWidth="240.0" style="-fx-background-color: #ffffff; -fx-border-color: #dcdcdc; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <Label text="Library Mangemnt System">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="38.0" prefWidth="102.0" text="Admin Pannel" textFill="#7f8c8d">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </Label>
+
+                <!-- Sidebar Navigation Buttons -->
+                <VBox spacing="15">
+                    <children>
+                        <Button fx:id="btnAddBookNav" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddBookNavOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
+                        <Button fx:id="btnIssueBookNav" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnIssueBookNavOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
+                    </children>
+                </VBox>
+
+                <Pane VBox.vgrow="ALWAYS" />
+
+                <!-- Bottom Sidebar Action Buttons (Side by Side) -->
+                <HBox spacing="8.0">
+                    <children>
+                        <Button fx:id="btnPrevious" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnPreviousOnAction" prefHeight="32.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 11px;" text="Previous" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnLogout" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnLogoutOnAction" prefHeight="32.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 11px;" text="Log Out" HBox.hgrow="ALWAYS" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- Center Area -->
+    <center>
+        <BorderPane style="-fx-background-color: #f4f7f6;" BorderPane.alignment="CENTER">
+            <top>
+                <HBox alignment="CENTER_LEFT" prefHeight="45.0" style="-fx-background-color: #34495e; -fx-padding: 0 20;">
+                    <children>
+                        <Label text="Issued Books List" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </top>
+
+            <center>
+                <VBox spacing="15.0" BorderPane.alignment="CENTER">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                    <children>
+                        <!-- Filter and Search Bar -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <children>
+                                <Label text="Status Filter:" textFill="#2c3e50">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox fx:id="statusComboBox" prefWidth="160.0" promptText="Select Status" />
+
+                                <HBox HBox.hgrow="ALWAYS" />
+
+                                <TextField fx:id="searchField" prefWidth="220.0" promptText="Search by ID, Member, Book..." style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 6px;" />
+                            </children>
+                        </HBox>
+
+                        <!-- Issued Books TableView -->
+                        <TableView fx:id="issueTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colIssueId" prefWidth="80.0" text="Issue ID" />
+                                <TableColumn fx:id="colMemberId" prefWidth="100.0" text="Member ID" />
+                                <TableColumn fx:id="colMemberName" prefWidth="150.0" text="Member Name" />
+                                <TableColumn fx:id="colBookId" prefWidth="90.0" text="Book ID" />
+                                <TableColumn fx:id="colBookTitle" prefWidth="180.0" text="Book Title" />
+                                <TableColumn fx:id="colIssueDate" prefWidth="110.0" text="Issue Date" />
+                                <TableColumn fx:id="colDueDate" prefWidth="110.0" text="Due Date" />
+                                <TableColumn fx:id="colStatus" prefWidth="90.0" text="Status" />
+                            </columns>
+                        </TableView>
+
+                        <!-- Action Button (Return Book) -->
+                        <HBox spacing="15.0">
+                            <children>
+                                <Button fx:id="btnReturnBook" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 13px;" text="Mark as Returned" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>
