@@ -54,11 +54,11 @@
                 <VBox spacing="15">
                     <children>
                         <Button fx:id="btnAddBookNav" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddBookNavOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
+                        <Button fx:id="btnAddMember" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
+                        <Button fx:id="btnManagerMember" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMemberOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
+                        <Button fx:id="btnIssuBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnIssuBooksOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
+                        <Button fx:id="btnReturnBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
+                        <Button fx:id="btnBrrowingHistory" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnBrrowingHistoryOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
                     </children>
                 </VBox>
 
@@ -115,7 +115,7 @@
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <ComboBox fx:id="cmbMember" prefHeight="36.0" prefWidth="350.0" promptText="Select Member (ID &amp; Name)" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+                                        <ComboBox fx:id="cmbMember" onAction="#cmbMemebrOnAction" prefHeight="36.0" prefWidth="350.0" promptText="Select Member (ID &amp; Name)" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
                                     </children>
                                 </VBox>
 
@@ -127,7 +127,7 @@
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <ComboBox fx:id="cmbBook" prefHeight="36.0" prefWidth="350.0" promptText="Select Book (ID &amp; Title)" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+                                        <ComboBox fx:id="cmbBook" onAction="#cmbBookOnAction" prefHeight="36.0" prefWidth="350.0" promptText="Select Book (ID &amp; Title)" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
                                     </children>
                                 </VBox>
 
