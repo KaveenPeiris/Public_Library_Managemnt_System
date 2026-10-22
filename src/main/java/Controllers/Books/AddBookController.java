@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import scene.SceneManager;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -107,6 +109,7 @@ public class AddBookController implements Initializable {
 
             if (isAdded) {
                 new Alert(Alert.AlertType.INFORMATION, "Book Added Successfully!\nBook ID: " + bookId).show();
+                SceneManager.switchpage("/view/view_add_book_page.fxml");
                 btnClearOnAction(event);
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to Add Book!").show();
