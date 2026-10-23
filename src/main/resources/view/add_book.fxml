@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.AddBookController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.AddBookController">
 
     <!-- Top Header Bar -->
     <top>
@@ -52,21 +52,30 @@
                 </Label>
 
                 <!-- Sidebar Navigation Buttons -->
-                <VBox spacing="15">
+                <VBox spacing="12">
                     <children>
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
+                        <Button fx:id="btnAddBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
+                        <Button fx:id="btnViewBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewBookOnAction" prefHeight="35.0" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="View Book" />
+
+                        <Button fx:id="btnAddMember" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
+                        <Button fx:id="btnViewMembers" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewMembersOnAction" prefHeight="35.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="View Members" />
+
+                        <Button fx:id="btnManageMembers" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
+                        <Button fx:id="btnIssuBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnIssuBooksOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
+                        <Button fx:id="btnReturnBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnReturnBooksOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
+                        <Button fx:id="btnBorrowingHistory" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnBorrowingHistoryOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
                     </children>
                 </VBox>
 
                 <Pane VBox.vgrow="ALWAYS" />
 
-                <!-- Log Out Button -->
-                <Button maxWidth="100.0" mnemonicParsing="false" prefHeight="32.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Log Out" />
+                <!-- Bottom Sidebar Action Buttons (Side by Side) -->
+                <HBox spacing="8.0">
+                    <children>
+                        <Button fx:id="btnPrevious" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnPreviousOnAction" prefHeight="32.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 11px;" text="Previous" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnLogout" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnLogoutOnAction" prefHeight="32.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 11px;" text="Log Out" HBox.hgrow="ALWAYS" />
+                    </children>
+                </HBox>
             </children>
         </VBox>
     </left>
@@ -112,7 +121,7 @@
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <HBox spacing="8.0" alignment="CENTER_LEFT">
+                                        <HBox alignment="CENTER_LEFT" spacing="8.0">
                                             <children>
                                                 <TextField fx:id="txtBookId" promptText="Enter Book ID / ISBN" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" HBox.hgrow="ALWAYS" />
                                                 <Button fx:id="btnGenerateId" mnemonicParsing="false" onAction="#btnGenerateIdOnAction" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 12px;" text="Generate" />
@@ -186,7 +195,7 @@
                         <!-- Form Buttons -->
                         <HBox spacing="15.0">
                             <children>
-                                <Button fx:id="btnAddBook" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #70e000; -fx-text-fill: #2c3e50; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 14px;" text="Add Book" />
+                                <Button fx:id="btnAddBookAction" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #70e000; -fx-text-fill: #2c3e50; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 14px;" text="Add Book" />
                                 <Button fx:id="btnClear" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #bdc3c7; -fx-text-fill: #2c3e50; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 14px;" text="Clear" />
                             </children>
                             <VBox.margin>

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.ViewIssueBookController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.IssueBookViewPageController">
 
     <!-- Top Header Bar -->
     <top>
@@ -50,14 +50,18 @@
                 </Label>
 
                 <!-- Sidebar Navigation Buttons -->
-                <VBox spacing="15">
+                <VBox spacing="12">
                     <children>
                         <Button fx:id="btnAddBookNav" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddBookNavOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
+                        <Button fx:id="btnViewBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewBookOnAction" prefHeight="35.0" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="View Book" />
+
+                        <Button fx:id="btnAddMember" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
+                        <Button fx:id="btnViewMembers" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewMembersOnAction" prefHeight="35.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="View Members" />
+
+                        <Button fx:id="btnManagerMember" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMemberOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
                         <Button fx:id="btnIssueBookNav" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnIssueBookNavOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
+                        <Button fx:id="btnReturnBookNav" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
+                        <Button fx:id="btnBrrowingHistory" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnBrrowingHistoryOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
                     </children>
                 </VBox>
 
@@ -128,7 +132,7 @@
                         <!-- Action Button (Return Book) -->
                         <HBox spacing="15.0">
                             <children>
-                                <Button fx:id="btnReturnBook" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 13px;" text="Mark as Returned" />
+                                <Button fx:id="btnReturnBook" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #002962; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 13px;" text="Mark as Returned" />
                             </children>
                         </HBox>
                     </children>
