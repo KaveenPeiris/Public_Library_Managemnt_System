@@ -55,7 +55,7 @@ public class DashbordController {
 
         @FXML
         void BtnBorrowingHistoryOnAction(ActionEvent event) {
-            SceneManager.switchpage("");
+
         }
 
         @FXML
