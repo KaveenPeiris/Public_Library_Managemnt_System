@@ -210,4 +210,16 @@ public class ViewBookPageController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Could not load scene: " + e.getMessage()).show();
         }
     }
+
+    public void btnViewBookOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnViewMembersOnAction(ActionEvent actionEvent) {
+    }
+
+    public void categoryComboBoxOnAction(ActionEvent actionEvent) {
+    }
+
+    public void searchFieldOnAction(ActionEvent actionEvent) {
+    }
 }

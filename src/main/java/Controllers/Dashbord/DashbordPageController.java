@@ -29,6 +29,12 @@ public class DashbordPageController {
         public void BtnLogOutOnAction(ActionEvent actionEvent) {
                 SceneManager.switchpage("/view/login_page.fxml");
         }
+
+    public void ViewMembersOnAction(ActionEvent actionEvent) {
+    }
+
+        public void ViewBookOnAction(ActionEvent actionEvent) {
+        }
 }
 
 

@@ -101,4 +101,10 @@ public class BrrowingHistoryPageController {
 
     }
 
+    public void btnViewBookOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnViewMembersOnAction(ActionEvent actionEvent) {
+
+    }
 }

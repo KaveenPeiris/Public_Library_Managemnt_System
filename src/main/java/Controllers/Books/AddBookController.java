@@ -187,4 +187,10 @@ public class AddBookController implements Initializable {
 
     public void btnGenerateIdOnAction(ActionEvent actionEvent) {
     }
+
+    public void ViewBookOnAction(ActionEvent actionEvent) {
+    }
+
+    public void ViewMembersOnAction(ActionEvent actionEvent) {
+    }
 }
