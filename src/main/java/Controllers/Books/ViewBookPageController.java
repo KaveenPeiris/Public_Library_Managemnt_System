@@ -207,6 +207,7 @@ public class ViewBookPageController implements Initializable {
     @FXML void btnPreviousOnAction(ActionEvent event) {
 
         loadScene(event, "/Views/Books/add_book.fxml"); }
+
     @FXML void btnReturnBooksOnAction(ActionEvent event) {
         loadScene(event,"/view/return_book.fxml");
     }
