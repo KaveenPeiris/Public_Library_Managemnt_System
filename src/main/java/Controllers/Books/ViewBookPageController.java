@@ -192,13 +192,24 @@ public class ViewBookPageController implements Initializable {
     }
 
     @FXML void btnAddBookOnAction(ActionEvent event) {
+        loadScene(event, "/views/Books/add_book.fxml"); }
+    @FXML void btnBorrowingHistoryOnAction(ActionEvent event) {
+        loadScene(event,"/view/borrowing_history.fxml");
+    }
+    @FXML void btnIssuBooksOnAction(ActionEvent event) {
+        loadScene(event,"/view/issu_book_view.fxml");
+    }
+    @FXML void btnLogoutOnAction(ActionEvent event) {
+        loadScene(event, "/views/login.fxml"); }
+    @FXML void btnManageMembersOnAction(ActionEvent event) {
+        loadScene(event,"/view/view_members.fxml");
+    }
+    @FXML void btnPreviousOnAction(ActionEvent event) {
+
         loadScene(event, "/Views/Books/add_book.fxml"); }
-    @FXML void btnBorrowingHistoryOnAction(ActionEvent event) { /* TODO */ }
-    @FXML void btnIssuBooksOnAction(ActionEvent event) { /* TODO */ }
-    @FXML void btnLogoutOnAction(ActionEvent event) { loadScene(event, "/Views/login.fxml"); }
-    @FXML void btnManageMembersOnAction(ActionEvent event) { /* TODO */ }
-    @FXML void btnPreviousOnAction(ActionEvent event) { loadScene(event, "/Views/Books/add_book.fxml"); }
-    @FXML void btnReturnBooksOnAction(ActionEvent event) { /* TODO */ }
+    @FXML void btnReturnBooksOnAction(ActionEvent event) {
+        loadScene(event,"/view/return_book.fxml");
+    }
 
     private void loadScene(ActionEvent event, String fxmlPath) {
         try {
