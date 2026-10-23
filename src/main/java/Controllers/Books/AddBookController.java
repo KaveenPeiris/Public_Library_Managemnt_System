@@ -193,4 +193,47 @@ public class AddBookController implements Initializable {
 
     public void ViewMembersOnAction(ActionEvent actionEvent) {
     }
+
+    public void btnAddMemberOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/add_member_page.fxml");
+    }
+
+    public void btnViewBookOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/view_add_book_page.fxml");
+    }
+
+    public void btnViewMembersOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/view_members.fxml");
+
+    }
+
+    public void btnManageMembersOnAction(ActionEvent actionEvent) {
+
+        SceneManager.switchpage("/view/view_members.fxml");
+    }
+
+    public void btnIssuBooksOnAction(ActionEvent actionEvent) {
+
+        SceneManager.switchpage("/view/issu_book_view.fxml");
+    }
+
+    public void btnReturnBooksOnAction(ActionEvent actionEvent) {
+
+        SceneManager.switchpage("/view/return_book.fxml");
+
+    }
+
+    public void btnBorrowingHistoryOnAction(ActionEvent actionEvent) {
+
+        SceneManager.switchpage("/view/borrowing_history.fxml");
+    }
+
+    public void btnPreviousOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/main_dashbord.fxml");
+    }
+
+    public void btnLogoutOnAction(ActionEvent actionEvent) {
+
+        SceneManager.switchpage("/view/login_page.fxml");
+    }
 }
