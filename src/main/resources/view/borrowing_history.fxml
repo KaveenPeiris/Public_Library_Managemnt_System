@@ -111,4 +111,24 @@
 
                                 <HBox HBox.hgrow="ALWAYS" />
 
-                                <TextField fx:id="searchField" prefWidth="240.0" promptText="Search Member ID or Book Title..." style="-fx-background-color: #ffffff; -fx-border-color: #bd
+                                <TextField fx:id="searchField" prefWidth="240.0" promptText="Search Member ID or Book Title..." style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 6px;" />
+                            </children>
+                        </HBox>
+
+                        <!-- Borrowing History TableView -->
+                        <TableView fx:id="historyTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colMemberId" prefWidth="120.0" text="Member ID" />
+                                <TableColumn fx:id="colBookTitle" prefWidth="250.0" text="Book Title" />
+                                <TableColumn fx:id="colIssueDate" prefWidth="120.0" text="Issue Date" />
+                                <TableColumn fx:id="colDueDate" prefWidth="120.0" text="Due Date" />
+                                <TableColumn fx:id="colReturnDate" prefWidth="120.0" text="Return Date" />
+                                <TableColumn fx:id="colStatus" prefWidth="120.0" text="Status" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>
