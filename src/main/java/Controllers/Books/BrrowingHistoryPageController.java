@@ -7,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import scene.SceneManager;
 
 public class BrrowingHistoryPageController {
 
@@ -63,48 +64,57 @@ public class BrrowingHistoryPageController {
 
     @FXML
     void btnAddBookNavOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/add_book.fxml");
 
     }
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/add_member.fxml");
 
     }
 
     @FXML
     void btnBrrowingHistoryOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/borrowing_history.fxml");
 
     }
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/issu_book_view.fxml");
 
     }
 
     @FXML
     void btnLogoutOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/login_page.fxml");
 
     }
 
     @FXML
     void btnManageMemberOnAction(ActionEvent event) {
 
+        SceneManager.switchpage("/view/view_add_book_page.fxml");
     }
 
     @FXML
     void btnPreviousOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/issu_book_view.fxml");
 
     }
 
     @FXML
     void btnReturnBookOnAction(ActionEvent event) {
-
+        SceneManager.switchpage("/view/return_book.fxml");
     }
 
     public void btnViewBookOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/view_add_book_page.fxml");
     }
 
     public void btnViewMembersOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/view_members.fxml");
 
     }
 }
