@@ -1,13 +1,37 @@
 package Controllers.Dashbord;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import scene.SceneManager;
 
 public class DashbordController {
 
+
+
+
+        @FXML
+        private Button btnAddBook;
+
+        @FXML
+        private Button btnAddMember;
+
+        @FXML
+        private Button btnBorrowingHistory;
+
+        @FXML
+        private Button btnIssuBooks;
+
+        @FXML
+        private Button btnLogOut;
+
+        @FXML
+        private Button btnManageMembers;
+
+        @FXML
+        private Button btnReturnBooks;
 
         @FXML
         private StackPane contentArea;
@@ -25,40 +49,45 @@ public class DashbordController {
         private Label lblTotalMembers;
 
         @FXML
-        void handleLogout(ActionEvent event) {
+        void AddBookOnAction(ActionEvent event) {
 
         }
 
         @FXML
-        void showAddBook(ActionEvent event) {
+        void BtnBorrowingHistoryOnAction(ActionEvent event) {
 
         }
 
         @FXML
-        void showAddMember(ActionEvent event) {
+        void BtnIssuBooksOnAction(ActionEvent event) {
 
         }
 
         @FXML
-        void showHistory(ActionEvent event) {
+        void BtnLogOutOnAction(ActionEvent event) {
 
         }
 
         @FXML
-        void showIssueBook(ActionEvent event) {
+        void BtnReturnBookOnAction(ActionEvent event) {
 
         }
 
         @FXML
-        void showManageMember(ActionEvent event) {
+        void btnAddMemberOnAction(ActionEvent event) {
 
         }
 
         @FXML
-        void showReturnBook(ActionEvent event) {
+        void btnManageMembersOnAction(ActionEvent event) {
 
         }
 
     }
+
+
+
+
+
 
 
