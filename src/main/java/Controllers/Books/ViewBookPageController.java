@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.stage.Stage;
+import scene.SceneManager;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -197,19 +198,21 @@ public class ViewBookPageController implements Initializable {
         loadScene(event,"/view/borrowing_history.fxml");
     }
     @FXML void btnIssuBooksOnAction(ActionEvent event) {
-        loadScene(event,"/view/issu_book_view.fxml");
+        SceneManager.switchpage("/view/issu_book_view.fxml");
     }
     @FXML void btnLogoutOnAction(ActionEvent event) {
-        loadScene(event, "/views/login.fxml"); }
+       SceneManager.switchpage( "/views/login.fxml");
+    }
     @FXML void btnManageMembersOnAction(ActionEvent event) {
-        loadScene(event,"/view/view_members.fxml");
+
+        SceneManager.switchpage("/view/view_members.fxml");
     }
     @FXML void btnPreviousOnAction(ActionEvent event) {
 
         loadScene(event, "/Views/Books/add_book.fxml"); }
 
     @FXML void btnReturnBooksOnAction(ActionEvent event) {
-        loadScene(event,"/view/return_book.fxml");
+        SceneManager.switchpage("/view/return_book.fxml");
     }
 
     private void loadScene(ActionEvent event, String fxmlPath) {
@@ -224,12 +227,15 @@ public class ViewBookPageController implements Initializable {
     }
 
     public void btnViewBookOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/view_add_book_page.fxml");
     }
 
     public void btnViewMembersOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/view_members.fxml");
     }
 
     public void categoryComboBoxOnAction(ActionEvent actionEvent) {
+
     }
 
     public void searchFieldOnAction(ActionEvent actionEvent) {
