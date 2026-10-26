@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import scene.SceneManager;
 
 import java.net.URL;
@@ -195,7 +194,7 @@ public class AddBookController implements Initializable {
     }
 
     public void btnAddMemberOnAction(ActionEvent actionEvent) {
-        SceneManager.switchpage("/view/add_member_page.fxml");
+        SceneManager.switchpage("/view/view_member.fxml");
     }
 
     public void btnViewBookOnAction(ActionEvent actionEvent) {
