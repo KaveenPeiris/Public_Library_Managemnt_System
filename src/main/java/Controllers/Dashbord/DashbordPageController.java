@@ -12,7 +12,8 @@ public class DashbordPageController {
                 }
 
         public void btnAddMemberOnAction(ActionEvent actionEvent) {
-                SceneManager.switchpage("/view/view_member.fxml");
+
+                SceneManager.switchpage("/view/add_member.fxml");
         }
 
         public void btnManageMembersOnAction(ActionEvent actionEvent) {

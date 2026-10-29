@@ -26,23 +26,19 @@ public class ViewBookController {
             while (resultSet.next()) {
                 Map<String, String> row = new HashMap<>();
                 row.put("book_id", resultSet.getString("book_id") != null ? resultSet.getString("book_id") : "");
-                row.put("book_tital", resultSet.getString("book_tital") != null ? resultSet.getString("book_tital") : "");
+                row.put("book_title", resultSet.getString("book_title") != null ? resultSet.getString("book_title") : "");
                 row.put("author", resultSet.getString("author") != null ? resultSet.getString("author") : "");
-                row.put("publish_year", resultSet.getString("publish_year") != null ? resultSet.getString("publish_year") : "");
+                row.put("published_year", resultSet.getString("published_year") != null ? resultSet.getString("published_year") : "");
 
-
-                int quantity = resultSet.getInt("quntity");
-                row.put("quntity", String.valueOf(quantity));
-
+                int quantity = resultSet.getInt("quantity");
+                row.put("quantity", String.valueOf(quantity));
 
                 String category = "";
                 try {
                     category = resultSet.getString("category");
                 } catch (SQLException ignored) {
-
                 }
                 row.put("category", (category != null && !category.isEmpty()) ? category : "-");
-
 
                 bookList.add(row);
             }
@@ -54,7 +50,6 @@ public class ViewBookController {
 
     public ObservableList<String> getCategory() {
         ObservableList<String> categoryList = FXCollections.observableArrayList();
-
         String sql = "SELECT DISTINCT category FROM category ORDER BY category ASC";
 
         try {
