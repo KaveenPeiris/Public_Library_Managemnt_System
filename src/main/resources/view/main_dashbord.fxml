@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashbord.DashbordController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashbord.DashbordPageController">
 
     <!-- Top Header Bar -->
     <top>
@@ -47,21 +47,25 @@
                 </Label>
 
                 <!-- Navigation Buttons -->
-                <VBox spacing="15">
+                <VBox spacing="12">
                     <children>
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showAddBook" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showAddMember" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showManageMember" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showIssueBook" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showReturnBook" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
-                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showHistory" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
+                        <Button fx:id="btnAddBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#AddBookOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
+                        <Button fx:id="btnViewBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#ViewBookOnAction" prefHeight="35.0" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="View Book" />
+
+                        <Button fx:id="btnAddMember" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
+                        <Button fx:id="btnViewMembers" maxWidth="Infinity" mnemonicParsing="false" onAction="#ViewMembersOnAction" prefHeight="35.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="View Members" />
+                        <Button fx:id="btnManageMembers" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
+
+                        <Button fx:id="btnIssuBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnIssuBooksOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
+                        <Button fx:id="btnReturnBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnReturnBookOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
+                        <Button fx:id="btnBorrowingHistory" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnBorrowingHistoryOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
                     </children>
                 </VBox>
 
                 <Pane VBox.vgrow="ALWAYS" />
 
                 <!-- Log Out Button -->
-                <Button maxWidth="100.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="32.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Log Out" />
+                <Button fx:id="btnLogOut" maxWidth="100.0" mnemonicParsing="false" onAction="#BtnLogOutOnAction" prefHeight="32.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="Log Out" />
             </children>
         </VBox>
     </left>
@@ -89,7 +93,7 @@
                         <!-- Stat Cards HBox -->
                         <HBox spacing="20">
                             <children>
-                                <!-- Total Books Card (Red) -->
+                                <!-- Total Books Card -->
                                 <VBox prefHeight="130.0" prefWidth="180.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 4px; -fx-padding: 15;">
                                     <children>
                                         <Label text="Total Books" textFill="WHITE">
@@ -106,7 +110,7 @@
                                     </children>
                                 </VBox>
 
-                                <!-- Total Members Card (Green) -->
+                                <!-- Total Members Card -->
                                 <VBox prefHeight="130.0" prefWidth="180.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 4px; -fx-padding: 15;">
                                     <children>
                                         <Label text="Total Members" textFill="WHITE">
@@ -123,7 +127,7 @@
                                     </children>
                                 </VBox>
 
-                                <!-- Borrowed Books Card (Blue) -->
+                                <!-- Borrowed Books Card -->
                                 <VBox prefHeight="130.0" prefWidth="180.0" style="-fx-background-color: #2980b9; -fx-background-radius: 4px; -fx-padding: 15;">
                                     <children>
                                         <Label text="Borrowed Books" textFill="WHITE">
@@ -140,7 +144,7 @@
                                     </children>
                                 </VBox>
 
-                                <!-- Overdue Books Card (Yellow) -->
+                                <!-- Overdue Books Card -->
                                 <VBox prefHeight="130.0" prefWidth="180.0" style="-fx-background-color: #f1c40f; -fx-background-radius: 4px; -fx-padding: 15;">
                                     <children>
                                         <Label text="Overdue Books" textFill="WHITE">
