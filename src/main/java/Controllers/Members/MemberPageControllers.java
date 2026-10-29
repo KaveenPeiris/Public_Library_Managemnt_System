@@ -4,8 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import scene.SceneManager;
 
-public class MemberControllers {
+public class MemberPageControllers {
 
     @FXML
     private Button btnAddBook;
@@ -59,37 +60,46 @@ public class MemberControllers {
 
     @FXML
     void btnBorrowingHistoryOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/borrowing_history.fxml");
     }
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
+
     }
 
     @FXML
     void btnIssuBookOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/issu_book_view.fxml");
     }
 
     @FXML
-    void btnLogOutOnAxcction(ActionEvent event) {
+    void btnLogOutOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/login_page.fxml");
     }
 
     @FXML
     void btnMangerMemebrOnAction(ActionEvent event) {
+
     }
 
     @FXML
     void btnRegisterMemberOnAction(ActionEvent event) {
+
     }
 
     @FXML
     void btnReturnBooksOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/return_book.fxml");
     }
 
     @FXML
     public void btnPreviousOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/main_dashbord.fxml");
     }
 
     @FXML
     public void btnLogoutOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/login_page.fxml");
     }
 }

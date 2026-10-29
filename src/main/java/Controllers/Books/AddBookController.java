@@ -228,6 +228,7 @@ public class AddBookController implements Initializable {
     }
 
     public void btnPreviousOnAction(ActionEvent actionEvent) {
+
         SceneManager.switchpage("/view/main_dashbord.fxml");
     }
 
