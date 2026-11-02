@@ -7,14 +7,9 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
-import javafx.stage.Stage;
 import scene.SceneManager;
 
 import java.net.URL;
@@ -39,26 +34,16 @@ public class ViewBookPageController implements Initializable {
     @FXML private ComboBox<String> categoryComboBox;
     @FXML private TextField searchField;
 
-    @FXML private Button btnAddBook;
-    @FXML private Button btnBorrowingHistory;
-    @FXML private Button btnDelete;
-    @FXML private Button btnIssuBooks;
-    @FXML private Button btnLogout;
-    @FXML private Button btnManageMembers;
-    @FXML private Button btnPrevious;
-    @FXML private Button btnReturnBooks;
-    @FXML private Button btnUpdate;
-
     Connection connection = DBConnection.getInstance().getConnection();
     private ObservableList<Map<String, String>> bookList = FXCollections.observableArrayList();
+    private FilteredList<Map<String, String>> filteredData;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         colBookId.setCellValueFactory(new MapValueFactory<>("book_id"));
         colTitle.setCellValueFactory(new MapValueFactory<>("book_title"));
         colAuthor.setCellValueFactory(new MapValueFactory<>("author"));
-        colYear.setCellValueFactory(new MapValueFactory<>("published_year"));
+        colYear.setCellValueFactory(new MapValueFactory<>("published_year")); // Fixed to match database column name
         colQuantity.setCellValueFactory(new MapValueFactory<>("quantity"));
         colCategory.setCellValueFactory(new MapValueFactory<>("category"));
 
@@ -75,18 +60,14 @@ public class ViewBookPageController implements Initializable {
             ResultSet resultSet = preparedStatement.executeQuery();
             categoryList.add("All Categories");
             while (resultSet.next()) {
-                String categoryId = resultSet.getString("category_id");
-                String categoryName = resultSet.getString("category_name");
-                categoryList.add(categoryId + " - " + categoryName);
+                categoryList.add(resultSet.getString("category_id") + " - " + resultSet.getString("category_name"));
             }
         } catch (SQLException e) {
-            System.out.println("Could Not Find the Category in DB: " + e.getMessage());
+            System.out.println("Could Not Find Categories in DB: " + e.getMessage());
         }
 
         if (categoryList.size() <= 1) {
-            categoryList.addAll("Romance", "Fantasy", "Science Fiction", "Mystery & Crime",
-                    "Thriller & Suspense", "Horror", "Historical Fiction",
-                    "Literary Fiction", "Young Adult (YA) & Children’s");
+            categoryList.addAll("Romance", "Fantasy", "Science Fiction", "Mystery & Crime", "Thriller & Suspense");
         }
         categoryComboBox.setItems(categoryList);
         categoryComboBox.getSelectionModel().selectFirst();
@@ -101,52 +82,54 @@ public class ViewBookPageController implements Initializable {
 
             while (resultSet.next()) {
                 Map<String, String> row = new HashMap<>();
-                row.put("book_id", resultSet.getString("book_id") != null ? resultSet.getString("book_id") : "");
-                row.put("book_title", resultSet.getString("book_title") != null ? resultSet.getString("book_title") : "");
-                row.put("author", resultSet.getString("author") != null ? resultSet.getString("author") : "");
-                row.put("published_year", resultSet.getString("published_year") != null ? resultSet.getString("published_year") : "");
+                row.put("book_id", resultSet.getString("book_id"));
+                row.put("book_title", resultSet.getString("book_title"));
+                row.put("author", resultSet.getString("author"));
+                row.put("published_year", resultSet.getString("published_year")); // Fixed to match database column name
                 row.put("quantity", String.valueOf(resultSet.getInt("quantity")));
-
-                String category = resultSet.getString("category");
-                row.put("category", (category != null && !category.isEmpty()) ? category : "-");
+                row.put("category", resultSet.getString("category"));
 
                 bookList.add(row);
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Error loading books: " + e.getMessage()).show();
         }
-        bookTable.setItems(bookList);
+
+        if (filteredData != null) {
+            filteredData.setPredicate(b -> true);
+        }
     }
 
     private void setupSearchAndFilter() {
-        FilteredList<Map<String, String>> filteredData = new FilteredList<>(bookList, b -> true);
+        filteredData = new FilteredList<>(bookList, b -> true);
 
-
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+        Runnable updateFilter = () -> {
             filteredData.setPredicate(book -> {
-                if (newValue == null || newValue.trim().isEmpty()) {
-                    return true;
+                String searchText = searchField.getText();
+                String selectedCategory = categoryComboBox.getValue();
+
+                boolean matchesSearch = true;
+                if (searchText != null && !searchText.trim().isEmpty()) {
+                    String lowerFilter = searchText.toLowerCase().trim();
+                    matchesSearch = book.get("book_id").toLowerCase().contains(lowerFilter) ||
+                            book.get("book_title").toLowerCase().contains(lowerFilter) ||
+                            book.get("author").toLowerCase().contains(lowerFilter) ||
+                            book.get("category").toLowerCase().contains(lowerFilter);
                 }
-                String lowerCaseFilter = newValue.toLowerCase().trim();
 
-                return book.get("book_id").toLowerCase().contains(lowerCaseFilter) ||
-                        book.get("book_title").toLowerCase().contains(lowerCaseFilter) ||
-                        book.get("author").toLowerCase().contains(lowerCaseFilter) ||
-                        book.get("category").toLowerCase().contains(lowerCaseFilter);
-            });
-        });
-
-
-        categoryComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(book -> {
-                if (newValue == null || newValue.equals("All Categories")) {
-                    return true;
+                boolean matchesCategory = true;
+                if (selectedCategory != null && !selectedCategory.equals("All Categories")) {
+                    String selectedCat = selectedCategory.contains(" - ") ? selectedCategory.split(" - ")[1].trim() : selectedCategory.trim();
+                    String bookCat = book.get("category");
+                    matchesCategory = bookCat.equalsIgnoreCase(selectedCat) || bookCat.equalsIgnoreCase(selectedCategory);
                 }
-                String selectedCat = newValue.contains(" - ") ? newValue.split(" - ")[1].trim() : newValue.trim();
-                String bookCat = book.get("category");
-                return bookCat.equalsIgnoreCase(selectedCat) || bookCat.equalsIgnoreCase(newValue);
+
+                return matchesSearch && matchesCategory;
             });
-        });
+        };
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> updateFilter.run());
+        categoryComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateFilter.run());
 
         SortedList<Map<String, String>> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(bookTable.comparatorProperty());
@@ -162,19 +145,16 @@ public class ViewBookPageController implements Initializable {
         }
 
         String bookId = selectedBook.get("book_id");
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete Book ID: " + bookId + "?", ButtonType.YES, ButtonType.NO);
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Delete Book ID: " + bookId + "?", ButtonType.YES, ButtonType.NO);
         confirm.showAndWait();
 
         if (confirm.getResult() == ButtonType.YES) {
-            String sql = "DELETE FROM books WHERE book_id = ?";
             try {
-                PreparedStatement pstmt = connection.prepareStatement(sql);
+                PreparedStatement pstmt = connection.prepareStatement("DELETE FROM books WHERE book_id = ?");
                 pstmt.setString(1, bookId);
                 if (pstmt.executeUpdate() > 0) {
                     new Alert(Alert.AlertType.INFORMATION, "Book deleted successfully!").show();
                     loadBooks();
-                } else {
-                    new Alert(Alert.AlertType.ERROR, "Failed to delete book.").show();
                 }
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Database Error: " + e.getMessage()).show();
@@ -182,62 +162,17 @@ public class ViewBookPageController implements Initializable {
         }
     }
 
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) {
-        Map<String, String> selectedBook = bookTable.getSelectionModel().getSelectedItem();
-        if (selectedBook == null) {
-            new Alert(Alert.AlertType.WARNING, "Please select a book to update!").show();
-            return;
-        }
-        new Alert(Alert.AlertType.INFORMATION, "Update selected for Book ID: " + selectedBook.get("book_id")).show();
-    }
-
-    @FXML void btnAddBookOnAction(ActionEvent event) {
-        loadScene(event, "/views/Books/add_book.fxml"); }
-    @FXML void btnBorrowingHistoryOnAction(ActionEvent event) {
-        loadScene(event,"/view/borrowing_history.fxml");
-    }
-    @FXML void btnIssuBooksOnAction(ActionEvent event) {
-        SceneManager.switchpage("/view/issu_book_view.fxml");
-    }
-    @FXML void btnLogoutOnAction(ActionEvent event) {
-       SceneManager.switchpage( "/views/login.fxml");
-    }
-    @FXML void btnManageMembersOnAction(ActionEvent event) {
-
-        SceneManager.switchpage("/view/view_members.fxml");
-    }
-    @FXML void btnPreviousOnAction(ActionEvent event) {
-
-        loadScene(event, "/Views/Books/add_book.fxml"); }
-
-    @FXML void btnReturnBooksOnAction(ActionEvent event) {
-        SceneManager.switchpage("/view/return_book.fxml");
-    }
-
-    private void loadScene(ActionEvent event, String fxmlPath) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, "Could not load scene: " + e.getMessage()).show();
-        }
-    }
-
-    public void btnViewBookOnAction(ActionEvent actionEvent) {
-        SceneManager.switchpage("/view/view_add_book_page.fxml");
-    }
-
-    public void btnViewMembersOnAction(ActionEvent actionEvent) {
-        SceneManager.switchpage("/view/view_members.fxml");
-    }
-
-    public void categoryComboBoxOnAction(ActionEvent actionEvent) {
-
-    }
-
-    public void searchFieldOnAction(ActionEvent actionEvent) {
-    }
+    @FXML void btnUpdateOnAction(ActionEvent event) { new Alert(Alert.AlertType.INFORMATION, "Update selected.").show(); }
+    @FXML void btnAddBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_book.fxml"); }
+    @FXML void btnViewBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
+    @FXML void btnAddMemberOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_member.fxml"); }
+    @FXML void btnViewMembersOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_members.fxml"); }
+    @FXML void btnManageMembersOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_members.fxml"); }
+    @FXML void btnIssuBooksOnAction(ActionEvent event) { SceneManager.switchpage("/view/issu_book_view.fxml"); }
+    @FXML void btnReturnBooksOnAction(ActionEvent event) { SceneManager.switchpage("/view/return_book.fxml"); }
+    @FXML void btnBorrowingHistoryOnAction(ActionEvent event) { SceneManager.switchpage("/view/borrowing_history.fxml"); }
+    @FXML void btnPreviousOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_book.fxml"); }
+    @FXML void btnLogoutOnAction(ActionEvent event) { SceneManager.switchpage("/view/login_page.fxml"); }
+    public void categoryComboBoxOnAction(ActionEvent actionEvent) {}
+    public void searchFieldOnAction(ActionEvent actionEvent) {}
 }

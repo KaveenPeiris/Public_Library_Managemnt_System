@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -13,195 +12,128 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.AddBookController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: #F8FAFC; -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.AddBookPageController">
 
-    <!-- Top Header Bar -->
-    <top>
-        <HBox alignment="CENTER" prefHeight="50.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
-            <children>
-                <Label text="Public Library Management" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-    </top>
-
-    <!-- Left Sidebar -->
+    <!-- Navbar Sidebar -->
     <left>
-        <VBox prefWidth="240.0" style="-fx-background-color: #ffffff; -fx-border-color: #dcdcdc; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
+        <VBox prefWidth="250.0" style="-fx-background-color: #0F172A; -fx-border-color: #1E293B; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+            <padding><Insets bottom="20.0" left="16.0" right="16.0" top="20.0" /></padding>
             <children>
-                <Label text="Library Mangemnt System">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label prefHeight="38.0" prefWidth="102.0" text="Admin Pannel" textFill="#7f8c8d">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets bottom="30.0" />
-                    </VBox.margin>
-                </Label>
-
-                <!-- Sidebar Navigation Buttons -->
-                <VBox spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="12.0">
                     <children>
-                        <Button fx:id="btnAddBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
-                        <Button fx:id="btnViewBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewBookOnAction" prefHeight="35.0" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="View Book" />
+                        <Pane prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: linear-gradient(to bottom right, #F97316, #EA580C); -fx-background-radius: 10px;" />
+                        <Label text="Panadura Library" textFill="WHITE"><font><Font name="System Bold" size="15.0" /></font></Label>
+                    </children>
+                    <VBox.margin><Insets bottom="28.0" /></VBox.margin>
+                </HBox>
 
-                        <Button fx:id="btnAddMember" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
-                        <Button fx:id="btnViewMembers" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewMembersOnAction" prefHeight="35.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="View Members" />
-
-                        <Button fx:id="btnManageMembers" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
-                        <Button fx:id="btnIssuBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnIssuBooksOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
-                        <Button fx:id="btnReturnBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnReturnBooksOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
-                        <Button fx:id="btnBorrowingHistory" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnBorrowingHistoryOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
+                <VBox spacing="6.0">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: linear-gradient(to right, #2563EB, #1D4ED8); -fx-text-fill: #FFFFFF; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📊 Add New Book" />
+                        <Button alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📚 Catalog / View Books" />
+                        <Button alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #1E293B; -fx-text-fill: #6EE7B7; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="👤 Add Member" />
                     </children>
                 </VBox>
-
                 <Pane VBox.vgrow="ALWAYS" />
-
-                <!-- Bottom Sidebar Action Buttons (Side by Side) -->
-                <HBox spacing="8.0">
-                    <children>
-                        <Button fx:id="btnPrevious" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnPreviousOnAction" prefHeight="32.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 11px;" text="Previous" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="btnLogout" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnLogoutOnAction" prefHeight="32.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 11px;" text="Log Out" HBox.hgrow="ALWAYS" />
-                    </children>
-                </HBox>
             </children>
         </VBox>
     </left>
 
-    <!-- Center Area -->
+    <!-- Center Content -->
     <center>
-        <BorderPane style="-fx-background-color: #f4f7f6;" BorderPane.alignment="CENTER">
+        <BorderPane style="-fx-background-color: #F8FAFC;">
             <top>
-                <HBox alignment="CENTER_LEFT" prefHeight="45.0" style="-fx-background-color: #34495e; -fx-padding: 0 20;">
+                <HBox alignment="CENTER_LEFT" prefHeight="65.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0; -fx-padding: 0 30;">
                     <children>
-                        <Label text="Add Book" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
+                        <Label text="Add New Book to Catalog" textFill="#0F172A"><font><Font name="System Bold" size="16.0" /></font></Label>
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #E2E8F0; -fx-text-fill: #1E293B; -fx-cursor: hand; -fx-background-radius: 8px; -fx-font-weight: bold;" text="← Back" />
                     </children>
                 </HBox>
             </top>
 
             <center>
-                <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
-                    <padding>
-                        <Insets bottom="20.0" left="40.0" right="40.0" top="25.0" />
-                    </padding>
+                <VBox spacing="20.0">
+                    <padding><Insets bottom="30.0" left="30.0" right="30.0" top="30.0" /></padding>
                     <children>
-                        <!-- Form Fields Grid -->
-                        <GridPane hgap="30.0" vgap="15.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="350.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="350.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
+                        <VBox spacing="25.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 14px; -fx-padding: 28; -fx-border-color: #E2E8F0; -fx-border-radius: 14px; -fx-effect: dropshadow(three-pass-box, rgba(15, 23, 42, 0.04), 16, 0, 0, 4);" VBox.vgrow="ALWAYS">
                             <children>
-                                <!-- Book ID / ISBN with Generate Button -->
-                                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label text="Book Information" textFill="#0F172A"><font><Font name="System Bold" size="15.0" /></font></Label>
+
+                                <GridPane hgap="30.0" vgap="20.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="380.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="380.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
                                     <children>
-                                        <Label text="Book ID / ISBN" textFill="#2c3e50">
-                                            <font>
-                                                <Font name="System Bold" size="13.0" />
-                                            </font>
-                                        </Label>
-                                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                        <!-- Book ID with Auto Gen Button -->
+                                        <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                             <children>
-                                                <TextField fx:id="txtBookId" promptText="Enter Book ID / ISBN" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" HBox.hgrow="ALWAYS" />
-                                                <Button fx:id="btnGenerateId" mnemonicParsing="false" onAction="#btnGenerateIdOnAction" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 12px;" text="Generate" />
+                                                <Label text="Book ID / ISBN" textFill="#475569"><font><Font name="System Bold" size="12.0" /></font></Label>
+                                                <HBox spacing="10.0">
+                                                    <children>
+                                                        <TextField fx:id="txtBookId" promptText="Auto-generated ID..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px; -fx-padding: 8 12;" HBox.hgrow="ALWAYS" />
+                                                        <Button fx:id="btnAutoGenerate" mnemonicParsing="false" onAction="#btnAutoGenerateOnAction" prefHeight="36.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to right, #8B5CF6, #7C3AED); -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(139,92,246,0.3), 8, 0, 0, 3);" text="⚡ Auto-Gen" />
+                                                    </children>
+                                                </HBox>
                                             </children>
-                                        </HBox>
-                                    </children>
-                                </VBox>
+                                        </VBox>
 
-                                <!-- Book Title -->
-                                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                    <children>
-                                        <Label text="Book Title" textFill="#2c3e50">
-                                            <font>
-                                                <Font name="System Bold" size="13.0" />
-                                            </font>
-                                        </Label>
-                                        <TextField fx:id="txtBookTitle" promptText="Enter Book Title" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" />
-                                    </children>
-                                </VBox>
+                                        <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <children>
+                                                <Label text="Book Title" textFill="#475569"><font><Font name="System Bold" size="12.0" /></font></Label>
+                                                <TextField fx:id="txtTitle" promptText="Enter Book Title..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px; -fx-padding: 8 12;" />
+                                            </children>
+                                        </VBox>
 
-                                <!-- Author -->
-                                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                    <children>
-                                        <Label text="Author" textFill="#2c3e50">
-                                            <font>
-                                                <Font name="System Bold" size="13.0" />
-                                            </font>
-                                        </Label>
-                                        <TextField fx:id="txtAuthorName" promptText="Enter Author Name" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" />
-                                    </children>
-                                </VBox>
+                                        <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Author Name" textFill="#475569"><font><Font name="System Bold" size="12.0" /></font></Label>
+                                                <TextField fx:id="txtAuthor" promptText="Enter Author Name..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px; -fx-padding: 8 12;" />
+                                            </children>
+                                        </VBox>
 
-                                <!-- Category -->
-                                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                    <children>
-                                        <Label text="Category" textFill="#2c3e50">
-                                            <font>
-                                                <Font name="System Bold" size="13.0" />
-                                            </font>
-                                        </Label>
-                                        <ComboBox fx:id="txtCategory" prefHeight="36.0" prefWidth="356.0" promptText="Select The Book Category" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
-                                    </children>
-                                </VBox>
+                                        <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Category" textFill="#475569"><font><Font name="System Bold" size="12.0" /></font></Label>
+                                                <ComboBox fx:id="cmbCategory" prefHeight="36.0" prefWidth="400.0" promptText="Select Category" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px;" />
+                                            </children>
+                                        </VBox>
 
-                                <!-- Published Year -->
-                                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                                    <children>
-                                        <Label text="Published Year" textFill="#2c3e50">
-                                            <font>
-                                                <Font name="System Bold" size="13.0" />
-                                            </font>
-                                        </Label>
-                                        <DatePicker fx:id="datepublishyear" prefHeight="36.0" prefWidth="347.0" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
-                                    </children>
-                                </VBox>
+                                        <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Publish Year" textFill="#475569"><font><Font name="System Bold" size="12.0" /></font></Label>
+                                                <TextField fx:id="txtYear" promptText="e.g. 2024" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px; -fx-padding: 8 12;" />
+                                            </children>
+                                        </VBox>
 
-                                <!-- Quantity -->
-                                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                    <children>
-                                        <Label text="Quantity" textFill="#2c3e50">
-                                            <font>
-                                                <Font name="System Bold" size="13.0" />
-                                            </font>
-                                        </Label>
-                                        <TextField fx:id="txtQuantity" promptText="Enter Quantity" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;" />
+                                        <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Quantity" textFill="#475569"><font><Font name="System Bold" size="12.0" /></font></Label>
+                                                <TextField fx:id="txtQuantity" promptText="e.g. 5" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px; -fx-padding: 8 12;" />
+                                            </children>
+                                        </VBox>
                                     </children>
-                                </VBox>
+                                </GridPane>
+
+                                <Pane VBox.vgrow="ALWAYS" />
+
+                                <HBox spacing="15.0">
+                                    <children>
+                                        <Button fx:id="btnSaveBook" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" style="-fx-background-color: linear-gradient(to right, #059669, #047857); -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(5,150,105,0.3), 10, 0, 0, 4);" text="Save Book" />
+                                        <Button fx:id="btnClear" mnemonicParsing="false" prefHeight="42.0" prefWidth="130.0" style="-fx-background-color: #E2E8F0; -fx-text-fill: #1E293B; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 8px;" text="Clear" />
+                                    </children>
+                                </HBox>
                             </children>
-                        </GridPane>
-
-                        <!-- Form Buttons -->
-                        <HBox spacing="15.0">
-                            <children>
-                                <Button fx:id="btnAddBookAction" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #70e000; -fx-text-fill: #2c3e50; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 14px;" text="Add Book" />
-                                <Button fx:id="btnClear" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #bdc3c7; -fx-text-fill: #2c3e50; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 14px;" text="Clear" />
-                            </children>
-                            <VBox.margin>
-                                <Insets top="10.0" />
-                            </VBox.margin>
-                        </HBox>
+                        </VBox>
                     </children>
                 </VBox>
             </center>

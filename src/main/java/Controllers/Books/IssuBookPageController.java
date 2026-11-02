@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class IssuBookPageController implements Initializable {
 
-    @FXML private Button btnAddBookNav, btnAddMember, btnBrrowingHistory, btnClear, btnIssuBooks, btnIssueBook, btnLogout, btnManagerMember, btnPrevious, btnReturnBook;
+    @FXML private Button btnAddBookNav, btnAddMember, btnBrrowingHistory, btnClear, btnIssuBooks, btnIssueBook, btnLogout, btnManagerMember, btnPrevious, btnReturnBook, btnViewBook, btnViewMembers;
     @FXML private ComboBox<String> cmbBook;
     @FXML private ComboBox<String> cmbMember;
     @FXML private DatePicker dateDue;
@@ -31,8 +31,8 @@ public class IssuBookPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadBooks();
         loadMembers();
-        dateIssue.setValue(LocalDate.now());
-        dateDue.setValue(LocalDate.now().plusDays(14)); // Standard 2-week loan period
+        if (dateIssue != null) dateIssue.setValue(LocalDate.now());
+        if (dateDue != null) dateDue.setValue(LocalDate.now().plusDays(14));
     }
 
     private void loadBooks() {
@@ -44,7 +44,7 @@ public class IssuBookPageController implements Initializable {
             while (rs.next()) {
                 bookList.add(rs.getString("book_id") + " - " + rs.getString("book_title"));
             }
-            cmbBook.setItems(bookList);
+            if (cmbBook != null) cmbBook.setItems(bookList);
         } catch (SQLException e) {
             System.out.println("Error loading books: " + e.getMessage());
         }
@@ -52,14 +52,14 @@ public class IssuBookPageController implements Initializable {
 
     private void loadMembers() {
         ObservableList<String> memberList = FXCollections.observableArrayList();
-        String sql = "SELECT member_id, name FROM members";
+        String sql = "SELECT member_id, full_name FROM members";
         try {
             PreparedStatement pst = connection.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                memberList.add(rs.getString("member_id") + " - " + rs.getString("name"));
+                memberList.add(rs.getString("member_id") + " - " + rs.getString("full_name"));
             }
-            cmbMember.setItems(memberList);
+            if (cmbMember != null) cmbMember.setItems(memberList);
         } catch (SQLException e) {
             System.out.println("Error loading members: " + e.getMessage());
         }
@@ -84,7 +84,6 @@ public class IssuBookPageController implements Initializable {
         try {
             connection.setAutoCommit(false);
 
-            // 1. Insert into issued_books
             String insertSql = "INSERT INTO issued_books (book_id, book_title, member_id, issue_date, due_date, status) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstInsert = connection.prepareStatement(insertSql);
             pstInsert.setString(1, bookId);
@@ -95,7 +94,6 @@ public class IssuBookPageController implements Initializable {
             pstInsert.setString(6, "Issued");
             int added = pstInsert.executeUpdate();
 
-            // 2. Reduce book quantity
             String updateSql = "UPDATE books SET quantity = quantity - 1 WHERE book_id = ?";
             PreparedStatement pstUpdate = connection.prepareStatement(updateSql);
             pstUpdate.setString(1, bookId);
@@ -105,7 +103,7 @@ public class IssuBookPageController implements Initializable {
                 connection.commit();
                 new Alert(Alert.AlertType.INFORMATION, "Book Issued Successfully!").show();
                 btnClearOnAction(event);
-                loadBooks(); // Refresh book list quantities
+                loadBooks();
             } else {
                 connection.rollback();
                 new Alert(Alert.AlertType.ERROR, "Failed to Issue Book.").show();
@@ -119,20 +117,24 @@ public class IssuBookPageController implements Initializable {
     }
 
     @FXML void btnClearOnAction(ActionEvent event) {
-        cmbBook.getSelectionModel().clearSelection();
-        cmbMember.getSelectionModel().clearSelection();
-        dateIssue.setValue(LocalDate.now());
-        dateDue.setValue(LocalDate.now().plusDays(14));
+        if (cmbBook != null) cmbBook.getSelectionModel().clearSelection();
+        if (cmbMember != null) cmbMember.getSelectionModel().clearSelection();
+        if (dateIssue != null) dateIssue.setValue(LocalDate.now());
+        if (dateDue != null) dateDue.setValue(LocalDate.now().plusDays(14));
     }
 
+
     @FXML void btnAddBookNavOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_book.fxml"); }
+    @FXML void btnViewBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
     @FXML void btnAddMemberOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_member.fxml"); }
-    @FXML void btnBrrowingHistoryOnAction(ActionEvent event) { SceneManager.switchpage("/view/borrowing_history.fxml"); }
-    @FXML void btnIssueBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/issu_book_view.fxml"); }
-    @FXML void btnLogoutOnAction(ActionEvent event) { SceneManager.switchpage("/view/login_page.fxml"); }
+    @FXML void btnViewMembersOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_members.fxml"); }
     @FXML void btnManageMemberOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_members.fxml"); }
-    @FXML void btnPreviousOnAction(ActionEvent event) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
+    @FXML void btnIssueBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/issu_book_view.fxml"); }
     @FXML void btnReturnBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/return_book.fxml"); }
+    @FXML void btnBrrowingHistoryOnAction(ActionEvent event) { SceneManager.switchpage("/view/borrowing_history.fxml"); }
+    @FXML void btnPreviousOnAction(ActionEvent event) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
+    @FXML void btnLogoutOnAction(ActionEvent event) { SceneManager.switchpage("/view/login_page.fxml"); }
+    @FXML void btnLogOutOnAction(ActionEvent event) { SceneManager.switchpage("/view/login_page.fxml"); }
     @FXML void cmbBookOnAction(ActionEvent event) {}
     @FXML void cmbMemebrOnAction(ActionEvent event) {}
 }

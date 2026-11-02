@@ -6,12 +6,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login.LoginPageController">
+<AnchorPane prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login.LoginPageController">
     <children>
         <!-- Left Side: Charcoal Dark Gray Background -->
         <AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2937;">
@@ -32,6 +33,9 @@
                             <VBox.margin>
                                 <Insets top="20.0" />
                             </VBox.margin>
+                     <image>
+                        <Image url="@../Images/istockphoto-1257246692-612x612.jpg" />
+                     </image>
                         </ImageView>
                     </children>
                 </VBox>
@@ -76,7 +80,7 @@
                         <!-- Forgot Password Link -->
                         <AnchorPane prefHeight="20.0">
                             <children>
-                                <Hyperlink layoutX="230.0" text="Forgot password?" textFill="#1F2937" style="-fx-underline: false;">
+                                <Hyperlink layoutX="230.0" style="-fx-underline: false;" text="Forgot password?" textFill="#1F2937">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>

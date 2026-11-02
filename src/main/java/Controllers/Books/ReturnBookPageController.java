@@ -1,88 +1,157 @@
 package Controllers.Books;
 
 import db.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import scene.SceneManager;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class ReturnBookPageController {
+public class ReturnBookPageController implements Initializable {
 
-    @FXML private TextField txtIssueId; // Or search field for active issues
+    @FXML private TextField searchField;
+    @FXML private TableView<ReturnModel> returnTable;
+    @FXML private TableColumn<ReturnModel, String> colIssueId;
+    @FXML private TableColumn<ReturnModel, String> colMemberId;
+    @FXML private TableColumn<ReturnModel, String> colMemberName;
+    @FXML private TableColumn<ReturnModel, String> colBookId;
+    @FXML private TableColumn<ReturnModel, String> colBookTitle;
+    @FXML private TableColumn<ReturnModel, String> colIssueDate;
+    @FXML private TableColumn<ReturnModel, String> colDueDate;
+    @FXML private DatePicker dateReturn;
 
     private Connection connection = DBConnection.getInstance().getConnection();
+    private ObservableList<ReturnModel> returnList = FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colIssueId.setCellValueFactory(new PropertyValueFactory<>("issueId"));
+        colMemberId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
+        colMemberName.setCellValueFactory(new PropertyValueFactory<>("memberName"));
+        colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+        colBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
+        colIssueDate.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
+        colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+
+        if (dateReturn != null) {
+            dateReturn.setValue(LocalDate.now());
+        }
+
+        loadPendingReturns("");
+
+        if (searchField != null) {
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> loadPendingReturns(newValue));
+        }
+    }
+
+    private void loadPendingReturns(String searchText) {
+        returnList.clear();
+        String sql = "SELECT i.issue_id, i.member_id, m.full_name AS member_name, i.book_id, i.book_title, i.issue_date, i.due_date " +
+                "FROM issued_books i JOIN members m ON i.member_id = m.member_id " +
+                "WHERE i.status = 'Issued' AND (i.member_id LIKE ? OR i.book_id LIKE ? OR m.full_name LIKE ?)";
+        try {
+            PreparedStatement pst = connection.prepareStatement(sql);
+            pst.setString(1, "%" + searchText + "%");
+            pst.setString(2, "%" + searchText + "%");
+            pst.setString(3, "%" + searchText + "%");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                returnList.add(new ReturnModel(
+                        rs.getString("issue_id"),
+                        rs.getString("member_id"),
+                        rs.getString("member_name"),
+                        rs.getString("book_id"),
+                        rs.getString("book_title"),
+                        rs.getString("issue_date"),
+                        rs.getString("due_date")
+                ));
+            }
+            if (returnTable != null) {
+                returnTable.setItems(returnList);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error loading pending returns: " + e.getMessage());
+        }
+    }
 
     @FXML
     public void btnProcessReturnOnAction(ActionEvent actionEvent) {
-        String issueIdStr = txtIssueId.getText();
-
-        if (issueIdStr == null || issueIdStr.trim().isEmpty()) {
-            new Alert(Alert.AlertType.WARNING, "Please enter a valid Issue ID or Transaction ID!").show();
+        ReturnModel selected = returnTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            new Alert(Alert.AlertType.WARNING, "Please select an issued book record from the table to return!").show();
             return;
         }
 
         try {
             connection.setAutoCommit(false);
 
-            // 1. Get book_id from issued_books
-            String getBookSql = "SELECT book_id, status FROM issued_books WHERE issue_id = ?";
-            PreparedStatement pstGet = connection.prepareStatement(getBookSql);
-            pstGet.setString(1, issueIdStr.trim());
-            ResultSet rs = pstGet.executeQuery();
+            String updateIssue = "UPDATE issued_books SET status = 'Returned', return_date = ? WHERE issue_id = ?";
+            PreparedStatement pst1 = connection.prepareStatement(updateIssue);
+            pst1.setString(1, (dateReturn.getValue() != null ? dateReturn.getValue() : LocalDate.now()).toString());
+            pst1.setString(2, selected.getIssueId());
+            int res1 = pst1.executeUpdate();
 
-            if (rs.next()) {
-                String status = rs.getString("status");
-                String bookId = rs.getString("book_id");
+            String updateBook = "UPDATE books SET quantity = quantity + 1 WHERE book_id = ?";
+            PreparedStatement pst2 = connection.prepareStatement(updateBook);
+            pst2.setString(1, selected.getBookId());
+            int res2 = pst2.executeUpdate();
 
-                if ("Returned".equals(status)) {
-                    new Alert(Alert.AlertType.WARNING, "This book has already been returned!").show();
-                    connection.rollback();
-                    return;
-                }
-
-                // 2. Update issued_books status and return_date
-                String updateIssueSql = "UPDATE issued_books SET status = 'Returned', return_date = ? WHERE issue_id = ?";
-                PreparedStatement pstUpdateIssue = connection.prepareStatement(updateIssueSql);
-                pstUpdateIssue.setString(1, LocalDate.now().toString());
-                pstUpdateIssue.setString(2, issueIdStr.trim());
-                int updatedIssue = pstUpdateIssue.executeUpdate();
-
-                // 3. Increment book quantity in books table
-                String updateBookSql = "UPDATE books SET quantity = quantity + 1 WHERE book_id = ?";
-                PreparedStatement pstUpdateBook = connection.prepareStatement(updateBookSql);
-                pstUpdateBook.setString(1, bookId);
-                int updatedBook = pstUpdateBook.executeUpdate();
-
-                if (updatedIssue > 0 && updatedBook > 0) {
-                    connection.commit();
-                    new Alert(Alert.AlertType.INFORMATION, "Book Return Processed Successfully!").show();
-                    txtIssueId.clear();
-                } else {
-                    connection.rollback();
-                    new Alert(Alert.AlertType.ERROR, "Failed to process return.").show();
-                }
+            if (res1 > 0 && res2 > 0) {
+                connection.commit();
+                new Alert(Alert.AlertType.INFORMATION, "Book Return Processed Successfully!").show();
+                loadPendingReturns("");
             } else {
-                new Alert(Alert.AlertType.ERROR, "Issue record not found!").show();
+                connection.rollback();
+                new Alert(Alert.AlertType.ERROR, "Failed to process return.").show();
             }
             connection.setAutoCommit(true);
 
         } catch (SQLException e) {
-            try { connection.rollback(); } catch (SQLException ex) { ex.printStackTrace(); }
+            try { connection.rollback(); } catch (SQLException ignored) {}
             new Alert(Alert.AlertType.ERROR, "Database Error: " + e.getMessage()).show();
         }
     }
 
-    @FXML void btnAddBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/add_book.fxml"); }
-    @FXML void btnViewBookOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
-    @FXML void btnViewMembersOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/view_members.fxml"); }
-    @FXML void btnIssueBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/issu_book.fxml"); }
-    @FXML void btnReturnBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/return_book.fxml"); }
-    @FXML void btnLogoutOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
+    // Navigation Handlers
+    public void btnAddBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/add_book.fxml"); }
+    public void btnViewBookOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
+    public void btnViewMembersOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/view_members.fxml"); }
+    public void btnIssueBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/issu_book.fxml"); }
+    public void btnReturnBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/return_book.fxml"); }
+    public void btnPreviousOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
+    public void btnLogoutOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/login_page.fxml"); }
+    public void btnLogOutOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/login_page.fxml"); }
+
+    public static class ReturnModel {
+        private String issueId, memberId, memberName, bookId, bookTitle, issueDate, dueDate;
+
+        public ReturnModel(String issueId, String memberId, String memberName, String bookId, String bookTitle, String issueDate, String dueDate) {
+            this.issueId = issueId;
+            this.memberId = memberId;
+            this.memberName = memberName;
+            this.bookId = bookId;
+            this.bookTitle = bookTitle;
+            this.issueDate = issueDate;
+            this.dueDate = dueDate;
+        }
+
+        public String getIssueId() { return issueId; }
+        public String getMemberId() { return memberId; }
+        public String getMemberName() { return memberName; }
+        public String getBookId() { return bookId; }
+        public String getBookTitle() { return bookTitle; }
+        public String getIssueDate() { return issueDate; }
+        public String getDueDate() { return dueDate; }
+    }
 }

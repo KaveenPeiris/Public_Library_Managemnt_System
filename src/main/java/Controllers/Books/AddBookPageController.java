@@ -3,6 +3,7 @@ package Controllers.Books;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,25 +72,14 @@ public class AddBookPageController {
 
         return prefix + "001";
     }
+
     public boolean addBook(String bookId, String bookTitle, String author, String category, int publishYear, int quantity) {
-        Connection connection1 = DBConnection.getInstance().getConnection();
-        String sql = "INSERT INTO books (book_id, title, author, category, published_year, quantity) VALUES (?, ?, ?, ?, ?, ?)";
+        return false;
+    }
 
-        try {
-            PreparedStatement preparedStatement = connection1.prepareStatement(sql);
-            preparedStatement.setString(1, bookId);
-            preparedStatement.setString(2, bookTitle);
-            preparedStatement.setString(3, author);
-            preparedStatement.setString(4, category);
-            preparedStatement.setInt(5, publishYear);
-            preparedStatement.setInt(6, quantity); // Fixed from index 7 to 6
+    public void btnAddOnAction(ActionEvent actionEvent) {
+    }
 
-            return preparedStatement.executeUpdate() > 0;
-
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
+    public void btnClearOnAction(ActionEvent actionEvent) {
     }
 }

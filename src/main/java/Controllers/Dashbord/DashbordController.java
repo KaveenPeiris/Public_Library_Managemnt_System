@@ -102,6 +102,7 @@ public class DashbordController implements Initializable {
                 SceneManager.switchpage("/view/return_book.fxml"); // Fixed missing leading slash[cite: 24]
         }
 
+
         @FXML
         void BtnBorrowingHistoryOnAction(ActionEvent event) {
                 SceneManager.switchpage("/view/borrowing_history.fxml");

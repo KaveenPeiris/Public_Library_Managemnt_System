@@ -1,91 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Members.ViewMemberController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: #F8FAFC; -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashbord.DashbordPageController">
 
-    <!-- Top Header Bar -->
-    <top>
-        <HBox alignment="CENTER" prefHeight="50.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
-            <children>
-                <Label text="Public Library Management" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-    </top>
-
-    <!-- Left Sidebar -->
+    <!-- Left Sidebar Navigation -->
     <left>
-        <VBox prefWidth="240.0" style="-fx-background-color: #ffffff; -fx-border-color: #dcdcdc; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+        <VBox prefWidth="240.0" styleClass="sidebar" BorderPane.alignment="CENTER">
             <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                <Insets bottom="20.0" left="16.0" right="16.0" top="20.0" />
             </padding>
             <children>
-                <Label text="Library Mangemnt System">
+                <!-- Brand / Logo Area -->
+                <HBox alignment="CENTER_LEFT" spacing="12.0">
+                    <children>
+                        <Pane prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: linear-gradient(135deg, #F97316, #C2410C); -fx-background-radius: 10px; -fx-effect: dropshadow(three-pass-box, rgba(249,115,22,0.3), 8, 0, 0, 3);" />
+                        <Label text="Panadura Library" textFill="#0F172A">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="25.0" />
+                    </VBox.margin>
+                </HBox>
+
+                <Label text="MAIN MENU" textFill="#94A3B8">
                     <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label prefHeight="38.0" prefWidth="102.0" text="Admin Pannel" textFill="#7f8c8d">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="10.0" />
                     </font>
                     <VBox.margin>
-                        <Insets bottom="30.0" />
+                        <Insets bottom="8.0" left="8.0" />
                     </VBox.margin>
                 </Label>
 
-                <!-- Sidebar Navigation Buttons -->
-                <VBox spacing="12">
+                <!-- Navigation Buttons -->
+                <VBox spacing="4.0">
                     <children>
-                        <Button fx:id="btnAddBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Book" />
-                        <Button fx:id="btnViewBook" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewBookOnAction" prefHeight="35.0" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="View Book" />
+                        <Button fx:id="btnAddBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#AddBookOnAction" prefHeight="38.0" styleClass="sidebar-btn-active" text="📊 Dashboard / Add Book" />
+                        <Button fx:id="btnViewBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#ViewBookOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="📚 Catalog / View Books" />
+                        <Button fx:id="btnAddMember" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="👤 Add Member" />
+                        <Button fx:id="btnViewMembers" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#ViewMembersOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="👥 View Members" />
+                        <Button fx:id="btnManageMembers" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="⚙️ Manage Members" />
+                    </children>
+                </VBox>
 
-                        <Button fx:id="btnAddMember" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Add Member" />
-                        <Button fx:id="btnViewMembers" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewMembersOnAction" prefHeight="35.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="View Members" />
+                <Label text="TRANSACTIONS" textFill="#94A3B8">
+                    <font>
+                        <Font name="System Bold" size="10.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="8.0" left="8.0" top="18.0" />
+                    </VBox.margin>
+                </Label>
 
-                        <Button fx:id="btnManageMembers" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Manage Member" />
-                        <Button fx:id="btnIssuBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnIssuBooksOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Issu Books" />
-                        <Button fx:id="btnReturnBooks" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnReturnBooksOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Return Book" />
-                        <Button fx:id="btnBorrowingHistory" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnBorrowingHistoryOnAction" prefHeight="35.0" style="-fx-background-color: #f1c40f; -fx-cursor: hand; -fx-font-weight: bold;" text="Borrowing History" />
+                <VBox spacing="4.0">
+                    <children>
+                        <Button fx:id="btnIssuBooks" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnIssuBooksOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="📤 Issue Books" />
+                        <Button fx:id="btnReturnBooks" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnReturnBookOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="📥 Return Books" />
+                        <Button fx:id="btnBorrowingHistory" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnBorrowingHistoryOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="📋 Borrowing History" />
                     </children>
                 </VBox>
 
                 <Pane VBox.vgrow="ALWAYS" />
 
-                <!-- Bottom Sidebar Action Buttons (Side by Side) -->
-                <HBox spacing="8.0">
+                <!-- User Profile Footer -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #F8FAFC; -fx-padding: 10; -fx-background-radius: 10px; -fx-border-color: #E2E8F0; -fx-border-radius: 10px;">
                     <children>
-                        <Button fx:id="btnPrevious" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnPreviousOnAction" prefHeight="32.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 11px;" text="Previous" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="btnLogout" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnLogoutOnAction" prefHeight="32.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 11px;" text="Log Out" HBox.hgrow="ALWAYS" />
+                        <Circle fill="#F97316" radius="16.0" />
+                        <VBox>
+                            <children>
+                                <Label text="Nadia Karim" textFill="#0F172A">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Head Librarian" textFill="#64748B">
+                                    <font>
+                                        <Font size="10.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
                     </children>
+                    <VBox.margin>
+                        <Insets bottom="12.0" />
+                    </VBox.margin>
                 </HBox>
+
+                <!-- Log Out Button -->
+                <Button fx:id="btnLogOut" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnLogOutOnAction" prefHeight="38.0" style="-fx-background-color: #FEF2F2; -fx-text-fill: #DC2626; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 12; -fx-font-weight: 700;" text="🚪 Log Out" />
             </children>
         </VBox>
     </left>
 
-    <!-- Center Area -->
+    <!-- Center Dashboard View -->
     <center>
-        <BorderPane style="-fx-background-color: #f4f7f6;" BorderPane.alignment="CENTER">
+        <BorderPane style="-fx-background-color: #F8FAFC;" BorderPane.alignment="CENTER">
+            <!-- Top Search Header Bar -->
             <top>
-                <HBox alignment="CENTER_LEFT" prefHeight="45.0" style="-fx-background-color: #34495e; -fx-padding: 0 20;">
+                <HBox alignment="CENTER_LEFT" prefHeight="70.0" styleClass="header-bar" BorderPane.alignment="CENTER">
                     <children>
-                        <Label text="View / Manage Members" textFill="WHITE">
+                        <TextField prefHeight="38.0" prefWidth="380.0" promptText="🔍 Search books, members, ISBN..." />
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <Label text="⚡ System Online — Library active" textFill="#64748B">
                             <font>
-                                <Font name="System Bold" size="16.0" />
+                                <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
                     </children>
@@ -93,37 +128,82 @@
             </top>
 
             <center>
-                <VBox spacing="15.0" BorderPane.alignment="CENTER">
+                <VBox spacing="24.0">
                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                     </padding>
                     <children>
-                        <!-- Search Bar -->
-                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <!-- Top Stat Cards Grid (Multi-color vibrant cards with improved layout) -->
+                        <HBox spacing="20.0">
                             <children>
-                                <HBox HBox.hgrow="ALWAYS" />
-                                <TextField fx:id="searchField" prefWidth="240.0" promptText="Search by ID, Name, Email..." style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 6px;" />
+                                <!-- Total Books (Orange) -->
+                                <VBox prefHeight="120.0" prefWidth="285.0" styleClass="stat-card-orange" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Total Books" textFill="WHITE"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                        <Pane VBox.vgrow="ALWAYS" />
+                                        <Label fx:id="lblTotalBooks" text="0" textFill="WHITE"><font><Font name="System Bold" size="36.0" /></font></Label>
+                                    </children>
+                                </VBox>
+
+                                <!-- Total Members (Green) -->
+                                <VBox prefHeight="120.0" prefWidth="285.0" styleClass="stat-card-green" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Total Members" textFill="WHITE"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                        <Pane VBox.vgrow="ALWAYS" />
+                                        <Label fx:id="lblTotalMembers" text="0" textFill="WHITE"><font><Font name="System Bold" size="36.0" /></font></Label>
+                                    </children>
+                                </VBox>
+
+                                <!-- Borrowed Books (Blue) -->
+                                <VBox prefHeight="120.0" prefWidth="285.0" styleClass="stat-card-blue" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Borrowed Books" textFill="WHITE"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                        <Pane VBox.vgrow="ALWAYS" />
+                                        <Label fx:id="lblBorrowedBooks" text="0" textFill="WHITE"><font><Font name="System Bold" size="36.0" /></font></Label>
+                                    </children>
+                                </VBox>
+
+                                <!-- Overdue Books (Rose) -->
+                                <VBox prefHeight="120.0" prefWidth="285.0" styleClass="stat-card-rose" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Overdue Books" textFill="WHITE"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                        <Pane VBox.vgrow="ALWAYS" />
+                                        <Label fx:id="lblOverdueBooks" text="0" textFill="WHITE"><font><Font name="System Bold" size="36.0" /></font></Label>
+                                    </children>
+                                </VBox>
                             </children>
                         </HBox>
 
-                        <!-- Members TableView -->
-                        <TableView fx:id="memberTable" VBox.vgrow="ALWAYS">
-                            <columns>
-                                <TableColumn fx:id="colMemberId" prefWidth="110.0" text="Member ID" />
-                                <TableColumn fx:id="colFullName" prefWidth="180.0" text="Full Name" />
-                                <TableColumn fx:id="colEmail" prefWidth="200.0" text="Email" />
-                                <TableColumn fx:id="colPhone" prefWidth="130.0" text="Phone Number" />
-                                <TableColumn fx:id="colAddress" prefWidth="180.0" text="Address" />
-                            </columns>
-                        </TableView>
-
-                        <!-- Action Buttons (Update & Delete) -->
-                        <HBox spacing="15.0">
+                        <!-- Multi-Chart Section -->
+                        <HBox spacing="20.0">
                             <children>
-                                <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #18206f; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 13px;" text="Update Member" />
-                                <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #d10000; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 13px;" text="Delete Member" />
+                                <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Book Distribution &amp; Traffic Overview" textFill="#0F172A">
+                                            <font><Font name="System Bold" size="15.0" /></font>
+                                            <VBox.margin><Insets bottom="12.0" /></VBox.margin>
+                                        </Label>
+                                        <BarChart fx:id="bookCategoryChart" prefHeight="240.0" title="">
+                                            <xAxis><CategoryAxis fx:id="xAxis" /></xAxis>
+                                            <yAxis><NumberAxis fx:id="yAxis" /></yAxis>
+                                        </BarChart>
+                                    </children>
+                                </VBox>
+
+                                <VBox prefWidth="380.0" styleClass="card">
+                                    <children>
+                                        <Label text="Circulation Breakdown" textFill="#0F172A">
+                                            <font><Font name="System Bold" size="15.0" /></font>
+                                            <VBox.margin><Insets bottom="12.0" /></VBox.margin>
+                                        </Label>
+                                        <PieChart fx:id="circulationPieChart" prefHeight="240.0" title="" />
+                                    </children>
+                                </VBox>
                             </children>
                         </HBox>
+
+                        <!-- Dynamic StackPane Area for Sub-Views -->
+                        <StackPane fx:id="contentArea" />
                     </children>
                 </VBox>
             </center>
