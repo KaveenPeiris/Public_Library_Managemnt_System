@@ -16,11 +16,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: #F8FAFC; -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashbord.DashbordController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: #F8FAFC; -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashbord.DashbordController">
 
-    <!-- Left Navbar Sidebar (Dark Navy Pro Theme) -->
+    <!-- Left Sidebar Navigation -->
     <left>
-        <VBox prefWidth="250.0" style="-fx-background-color: #0F172A; -fx-border-color: #1E293B; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+        <VBox prefWidth="240.0" styleClass="sidebar" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="20.0" left="16.0" right="16.0" top="20.0" />
             </padding>
@@ -28,84 +28,100 @@
                 <!-- Brand / Logo Area -->
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
                     <children>
-                        <Pane prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: linear-gradient(to bottom right, #F97316, #EA580C); -fx-background-radius: 10px; -fx-effect: dropshadow(three-pass-box, rgba(249,115,22,0.4), 10, 0, 0, 4);" />
-                        <VBox alignment="CENTER_LEFT">
-                            <children>
-                                <Label text="Panadura Library" textFill="WHITE">
-                                    <font><Font name="System Bold" size="15.0" /></font>
-                                </Label>
-                                <Label text="Pro Enterprise Edition" textFill="#94A3B8">
-                                    <font><Font size="10.0" /></font>
-                                </Label>
-                            </children>
-                        </VBox>
+                        <Pane prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: linear-gradient(135deg, #F97316, #C2410C); -fx-background-radius: 10px; -fx-effect: dropshadow(three-pass-box, rgba(249,115,22,0.3), 8, 0, 0, 3);" />
+                        <Label text="Panadura Library" textFill="#0F172A">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
                     </children>
                     <VBox.margin>
-                        <Insets bottom="24.0" />
+                        <Insets bottom="25.0" />
                     </VBox.margin>
                 </HBox>
 
-                <Label text="MAIN MENU" textFill="#64748B">
-                    <font><Font name="System Bold" size="10.0" /></font>
-                    <VBox.margin><Insets bottom="6.0" left="10.0" /></VBox.margin>
+                <Label text="MAIN MENU" textFill="#94A3B8">
+                    <font>
+                        <Font name="System Bold" size="10.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="8.0" left="8.0" />
+                    </VBox.margin>
                 </Label>
 
-                <!-- Navigation Buttons (Dashboard removed from button label, now Add Book) -->
-                <VBox spacing="5.0">
+                <!-- Navigation Buttons (Matches DashbordController methods & FXIDs) -->
+                <VBox spacing="4.0">
                     <children>
-                        <Button fx:id="btnAddBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#AddBookOnAction" prefHeight="38.0" style="-fx-background-color: linear-gradient(to right, #2563EB, #1D4ED8); -fx-text-fill: #FFFFFF; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📊 Add Book" />
-                        <Button fx:id="btnViewBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#ViewBookOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📚 Catalog / View Books" />
-                        <Button fx:id="btnAddMember" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #6EE7B7; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="👤 Add Member" />
-                        <Button fx:id="btnViewMembers" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#ViewMembersOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #C084FC; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="👥 View Members" />
-                        <Button fx:id="btnManageMembers" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #FDE047; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="⚙️ Manage Members" />
+                        <Button fx:id="btnAddBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#AddBookOnAction" prefHeight="38.0" styleClass="sidebar-btn-active" text="📊 Add Book" />
+                        <Button fx:id="btnViewBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#ViewBookOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="📚 Catalog / View Books" />
+                        <Button fx:id="btnAddMember" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="👤 Add Member" />
+                        <Button fx:id="btnViewMembers" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#ViewMembersOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="👥 View Members" />
+                        <Button fx:id="btnManageMembers" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="⚙️ Manage Members" />
                     </children>
                 </VBox>
 
-                <Label text="TRANSACTIONS" textFill="#64748B">
-                    <font><Font name="System Bold" size="10.0" /></font>
-                    <VBox.margin><Insets bottom="6.0" left="10.0" top="15.0" /></VBox.margin>
+                <Label text="TRANSACTIONS" textFill="#94A3B8">
+                    <font>
+                        <Font name="System Bold" size="10.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="8.0" left="8.0" top="18.0" />
+                    </VBox.margin>
                 </Label>
 
-                <VBox spacing="5.0">
+                <VBox spacing="4.0">
                     <children>
-                        <Button fx:id="btnIssuBooks" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnIssuBooksOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #FDBA74; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📤 Issue Books" />
-                        <Button fx:id="btnReturnBooks" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnReturnBookOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #6EE7B7; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📥 Return Books" />
-                        <Button fx:id="btnBorrowingHistory" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnBorrowingHistoryOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #F472B6; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📋 Borrowing History" />
+                        <Button fx:id="btnIssuBooks" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnIssuBooksOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="📤 Issue Books" />
+                        <Button fx:id="btnReturnBooks" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnReturnBookOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="📥 Return Books" />
+                        <Button fx:id="btnBorrowingHistory" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnBorrowingHistoryOnAction" prefHeight="38.0" styleClass="sidebar-btn" text="📋 Borrowing History" />
                     </children>
                 </VBox>
 
                 <Pane VBox.vgrow="ALWAYS" />
 
-                <!-- Profile Badge -->
-                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #1E293B; -fx-padding: 10; -fx-background-radius: 10px; -fx-border-color: #334155; -fx-border-radius: 10px;">
+                <!-- User Profile Footer -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #F8FAFC; -fx-padding: 10; -fx-background-radius: 10px; -fx-border-color: #E2E8F0; -fx-border-radius: 10px;">
                     <children>
                         <Circle fill="#F97316" radius="16.0" />
                         <VBox>
                             <children>
-                                <Label text="Nadia Karim" textFill="WHITE"><font><Font name="System Bold" size="12.0" /></font></Label>
-                                <Label text="Head Librarian" textFill="#94A3B8"><font><Font size="10.0" /></font></Label>
+                                <Label text="Nadia Karim" textFill="#0F172A">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Head Librarian" textFill="#64748B">
+                                    <font>
+                                        <Font size="10.0" />
+                                    </font>
+                                </Label>
                             </children>
                         </VBox>
                     </children>
-                    <VBox.margin><Insets bottom="10.0" /></VBox.margin>
+                    <VBox.margin>
+                        <Insets bottom="12.0" />
+                    </VBox.margin>
                 </HBox>
 
-                <Button fx:id="btnLogOut" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnLogOutOnAction" prefHeight="38.0" style="-fx-background-color: #312E81; -fx-text-fill: #FCA5A5; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="🚪 Log Out" />
+                <!-- Log Out Button -->
+                <Button fx:id="btnLogOut" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#BtnLogOutOnAction" prefHeight="38.0" style="-fx-background-color: #FEF2F2; -fx-text-fill: #DC2626; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 12; -fx-font-weight: 700;" text="🚪 Log Out" />
             </children>
         </VBox>
     </left>
 
-    <!-- Center Dashboard Body Area -->
+    <!-- Center Dashboard View -->
     <center>
         <BorderPane style="-fx-background-color: #F8FAFC;" BorderPane.alignment="CENTER">
             <!-- Top Search Header Bar -->
             <top>
-                <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0; -fx-padding: 0 30;" BorderPane.alignment="CENTER">
+                <HBox alignment="CENTER_LEFT" prefHeight="70.0" styleClass="header-bar" BorderPane.alignment="CENTER">
                     <children>
-                        <TextField prefHeight="38.0" prefWidth="380.0" promptText="🔍 Search books, members, ISBN..." style="-fx-background-color: #F1F5F9; -fx-border-color: #CBD5E1; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-padding: 6 12; -fx-text-fill: #1E293B;" />
+                        <TextField prefHeight="38.0" prefWidth="380.0" promptText="🔍 Search books, members, ISBN..." />
                         <Pane HBox.hgrow="ALWAYS" />
-                        <Label text="⚡ System Online — Panadura Main Library" textFill="#0284C7">
-                            <font><Font name="System Bold" size="12.0" /></font>
+                        <Label text="⚡ System Online — Library active" textFill="#64748B">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
                         </Label>
                     </children>
                 </HBox>
@@ -117,10 +133,10 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                     </padding>
                     <children>
-                        <!-- Top Stat Cards (Vibrant Gradients with Deep Soft Shadows) -->
+                        <!-- Top Stat Cards Grid (Mapped to lblTotalBooks, lblTotalMembers, lblBorrowedBooks, lblOverdueBooks) -->
                         <HBox spacing="20.0">
                             <children>
-                                <VBox prefHeight="120.0" prefWidth="285.0" style="-fx-background-color: linear-gradient(to bottom right, #EA580C, #C2410C); -fx-background-radius: 14px; -fx-padding: 22; -fx-effect: dropshadow(three-pass-box, rgba(234, 88, 12, 0.35), 18, 0, 0, 6);" HBox.hgrow="ALWAYS">
+                                <VBox prefHeight="120.0" prefWidth="285.0" styleClass="stat-card-orange" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label text="Total Books" textFill="WHITE"><font><Font name="System Bold" size="13.0" /></font></Label>
                                         <Pane VBox.vgrow="ALWAYS" />
@@ -128,7 +144,7 @@
                                     </children>
                                 </VBox>
 
-                                <VBox prefHeight="120.0" prefWidth="285.0" style="-fx-background-color: linear-gradient(to bottom right, #059669, #047857); -fx-background-radius: 14px; -fx-padding: 22; -fx-effect: dropshadow(three-pass-box, rgba(5, 150, 105, 0.35), 18, 0, 0, 6);" HBox.hgrow="ALWAYS">
+                                <VBox prefHeight="120.0" prefWidth="285.0" styleClass="stat-card-green" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label text="Total Members" textFill="WHITE"><font><Font name="System Bold" size="13.0" /></font></Label>
                                         <Pane VBox.vgrow="ALWAYS" />
@@ -136,7 +152,7 @@
                                     </children>
                                 </VBox>
 
-                                <VBox prefHeight="120.0" prefWidth="285.0" style="-fx-background-color: linear-gradient(to bottom right, #2563EB, #1D4ED8); -fx-background-radius: 14px; -fx-padding: 22; -fx-effect: dropshadow(three-pass-box, rgba(37, 99, 235, 0.35), 18, 0, 0, 6);" HBox.hgrow="ALWAYS">
+                                <VBox prefHeight="120.0" prefWidth="285.0" styleClass="stat-card-blue" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label text="Borrowed Books" textFill="WHITE"><font><Font name="System Bold" size="13.0" /></font></Label>
                                         <Pane VBox.vgrow="ALWAYS" />
@@ -144,7 +160,7 @@
                                     </children>
                                 </VBox>
 
-                                <VBox prefHeight="120.0" prefWidth="285.0" style="-fx-background-color: linear-gradient(to bottom right, #E11D48, #BE123C); -fx-background-radius: 14px; -fx-padding: 22; -fx-effect: dropshadow(three-pass-box, rgba(225, 29, 72, 0.35), 18, 0, 0, 6);" HBox.hgrow="ALWAYS">
+                                <VBox prefHeight="120.0" prefWidth="285.0" styleClass="stat-card-rose" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label text="Overdue Books" textFill="WHITE"><font><Font name="System Bold" size="13.0" /></font></Label>
                                         <Pane VBox.vgrow="ALWAYS" />
@@ -154,14 +170,14 @@
                             </children>
                         </HBox>
 
-                        <!-- Multi-Chart Containers -->
+                        <!-- Multi-Chart Section -->
                         <HBox spacing="20.0">
                             <children>
-                                <VBox style="-fx-background-color: #FFFFFF; -fx-background-radius: 14px; -fx-padding: 20; -fx-border-color: #E2E8F0; -fx-border-radius: 14px; -fx-effect: dropshadow(three-pass-box, rgba(15, 23, 42, 0.04), 16, 0, 0, 4);" HBox.hgrow="ALWAYS">
+                                <VBox styleClass="card" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label text="Book Distribution &amp; Traffic Overview" textFill="#0F172A">
                                             <font><Font name="System Bold" size="15.0" /></font>
-                                            <VBox.margin><Insets bottom="10.0" /></VBox.margin>
+                                            <VBox.margin><Insets bottom="12.0" /></VBox.margin>
                                         </Label>
                                         <BarChart fx:id="bookCategoryChart" prefHeight="240.0" title="">
                                             <xAxis><CategoryAxis fx:id="xAxis" /></xAxis>
@@ -170,11 +186,11 @@
                                     </children>
                                 </VBox>
 
-                                <VBox prefWidth="380.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 14px; -fx-padding: 20; -fx-border-color: #E2E8F0; -fx-border-radius: 14px; -fx-effect: dropshadow(three-pass-box, rgba(15, 23, 42, 0.04), 16, 0, 0, 4);">
+                                <VBox prefWidth="380.0" styleClass="card">
                                     <children>
                                         <Label text="Circulation Breakdown" textFill="#0F172A">
                                             <font><Font name="System Bold" size="15.0" /></font>
-                                            <VBox.margin><Insets bottom="10.0" /></VBox.margin>
+                                            <VBox.margin><Insets bottom="12.0" /></VBox.margin>
                                         </Label>
                                         <PieChart fx:id="circulationPieChart" prefHeight="240.0" title="" />
                                     </children>
@@ -182,7 +198,7 @@
                             </children>
                         </HBox>
 
-                        <!-- Dynamic StackPane Area for Sub-Views -->
+                        <!-- Dynamic StackPane Area -->
                         <StackPane fx:id="contentArea" />
                     </children>
                 </VBox>
