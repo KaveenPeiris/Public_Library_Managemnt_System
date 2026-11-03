@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: #F8FAFC; -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Members.ViewMembersController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: #F8FAFC; -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Members.ViewMemberController">
 
     <!-- Left Sidebar Navigation -->
     <left>
@@ -50,10 +50,10 @@
                 <!-- Navigation Buttons -->
                 <VBox spacing="5.0">
                     <children>
-                        <Button fx:id="btnAddBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#AddBookOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📊 Add Book" />
-                        <Button fx:id="btnViewBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#ViewBookOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📚 Catalog / View Books" />
-                        <Button alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #6EE7B7; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="👤 Add Member" />
-                        <Button fx:id="btnViewMembers" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#ViewMembersOnAction" prefHeight="38.0" style="-fx-background-color: linear-gradient(to right, #9333EA, #7E22CE); -fx-text-fill: #FFFFFF; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="👥 View Members" />
+                        <Button fx:id="btnAddBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📊 Add Book" />
+                        <Button fx:id="btnViewBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewBookOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📚 Catalog / View Books" />
+                        <Button fx:id="btnAddMember" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #6EE7B7; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="👤 Add Member" />
+                        <Button fx:id="btnViewMembers" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewMembersOnAction" prefHeight="38.0" style="-fx-background-color: linear-gradient(to right, #9333EA, #7E22CE); -fx-text-fill: #FFFFFF; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="👥 View Members" />
                         <Button fx:id="btnManageMembers" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMembersOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #FDE047; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="⚙️ Manage Members" />
                     </children>
                 </VBox>
@@ -132,7 +132,7 @@
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="searchField" onAction="#searchFieldOnAction" prefHeight="38.0" prefWidth="320.0" promptText="Search by name, email, phone..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px; -fx-padding: 6 12;" />
+                                        <TextField fx:id="searchField" prefHeight="38.0" prefWidth="320.0" promptText="Search by ID, name, email..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px; -fx-padding: 6 12;" />
                                     </children>
                                 </HBox>
 
