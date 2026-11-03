@@ -134,7 +134,7 @@ public class AddBookPageController implements Initializable {
             int publishYear = Integer.parseInt(yearStr);
             int quantity = Integer.parseInt(qtyStr);
 
-            String sql = "INSERT INTO books (book_id, title, author, publish_year, quantity, category) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO books (book_id, book_title, author, publish_year, quantity, category) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = connection.prepareStatement(sql);
             pst.setString(1, bookId);
             pst.setString(2, title);
