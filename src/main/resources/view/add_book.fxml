@@ -81,7 +81,7 @@
                                                 <HBox spacing="10.0">
                                                     <children>
                                                         <TextField fx:id="txtBookId" promptText="Auto-generated ID..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px; -fx-padding: 8 12;" HBox.hgrow="ALWAYS" />
-                                                        <Button fx:id="btnAutoGenerate" mnemonicParsing="false" onAction="#btnAutoGenerateOnAction" prefHeight="36.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to right, #8B5CF6, #7C3AED); -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(139,92,246,0.3), 8, 0, 0, 3);" text="⚡ Auto-Gen" />
+                                                        <Button fx:id="btnAutoGenerate" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="36.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to right, #8B5CF6, #7C3AED); -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(139,92,246,0.3), 8, 0, 0, 3);" text="⚡ Auto-Gen" />
                                                     </children>
                                                 </HBox>
                                             </children>
