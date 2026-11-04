@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: #F8FAFC; -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.IssuBookPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: #F8FAFC; -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Books.ReturnBookPageController">
 
     <!-- Left Sidebar Navigation -->
     <left>
@@ -52,9 +52,10 @@
                 <!-- Navigation Buttons -->
                 <VBox spacing="5.0">
                     <children>
-                        <Button fx:id="btnAddBookNav" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddBookNavOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📊 Add Book" />
-                        <Button fx:id="btnViewBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewBookOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📚 Catalog / View Books" />
-                        <Button fx:id="btnAddMember" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #6EE7B7; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="👤 Add Member" />
+                        <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnPreviousOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📊 Dashboard" />
+                        <Button fx:id="btnAddBookNav" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddBookNavOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📖 Add Book" />
+                        <Button fx:id="btnAddMember" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #6EE7B7; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="👤 Add Members" />
+                        <Button fx:id="btnViewBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewBookOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #93C5FD; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📚 View Books" />
                         <Button fx:id="btnViewMembers" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnViewMembersOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #C084FC; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="👥 View Members" />
                         <Button fx:id="btnManagerMember" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnManageMemberOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #FDE047; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="⚙️ Manage Members" />
                     </children>
@@ -67,8 +68,8 @@
 
                 <VBox spacing="5.0">
                     <children>
-                        <Button fx:id="btnIssuBooks" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnIssuBooksOnAction" prefHeight="38.0" style="-fx-background-color: linear-gradient(to right, #F97316, #EA580C); -fx-text-fill: #FFFFFF; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📤 Issue Books" />
-                        <Button fx:id="btnReturnBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #6EE7B7; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📥 Return Books" />
+                        <Button fx:id="btnIssuBooks" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnIssuBooksOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #FDBA74; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📤 Issue Books" />
+                        <Button fx:id="btnReturnBook" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnReturnBookOnAction" prefHeight="38.0" style="-fx-background-color: linear-gradient(to right, #059669, #047857); -fx-text-fill: #FFFFFF; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📥 Return Books" />
                         <Button fx:id="btnBrrowingHistory" alignment="BASELINE_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#btnBrrowingHistoryOnAction" prefHeight="38.0" style="-fx-background-color: #1E293B; -fx-text-fill: #F472B6; -fx-cursor: hand; -fx-background-radius: 8px; -fx-padding: 0 14; -fx-font-weight: bold;" text="📋 Borrowing History" />
                     </children>
                 </VBox>
@@ -106,7 +107,7 @@
             <top>
                 <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0; -fx-padding: 0 30;" BorderPane.alignment="CENTER">
                     <children>
-                        <Label text="Issue Book to Member" textFill="#0F172A">
+                        <Label text="Return Book Processing" textFill="#0F172A">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -126,7 +127,7 @@
                         <!-- Form Container Card -->
                         <VBox spacing="25.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 14px; -fx-padding: 28; -fx-border-color: #E2E8F0; -fx-border-radius: 14px; -fx-effect: dropshadow(three-pass-box, rgba(15, 23, 42, 0.04), 16, 0, 0, 4);" VBox.vgrow="ALWAYS">
                             <children>
-                                <Label text="Book Issuance Details" textFill="#0F172A">
+                                <Label text="Book Return Information" textFill="#0F172A">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
@@ -143,51 +144,27 @@
                                         <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <!-- Select Member -->
+                                        <!-- Select Issued Record / Book -->
                                         <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                             <children>
-                                                <Label text="Select Member" textFill="#475569">
+                                                <Label text="Select Active Issued Record" textFill="#475569">
                                                     <font>
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <ComboBox fx:id="cmbMember" onAction="#cmbMemebrOnAction" prefHeight="38.0" prefWidth="380.0" promptText="Select Member (ID &amp; Name)" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px;" />
+                                                <ComboBox fx:id="cmbIssuedRecord" prefHeight="38.0" prefWidth="380.0" promptText="Select Member &amp; Book..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px;" />
                                             </children>
                                         </VBox>
 
-                                        <!-- Select Book -->
+                                        <!-- Return Date -->
                                         <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                             <children>
-                                                <Label text="Select Book" textFill="#475569">
+                                                <Label text="Actual Return Date" textFill="#475569">
                                                     <font>
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <ComboBox fx:id="cmbBook" onAction="#cmbBookOnAction" prefHeight="38.0" prefWidth="380.0" promptText="Select Book (ID &amp; Title)" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px;" />
-                                            </children>
-                                        </VBox>
-
-                                        <!-- Issue Date -->
-                                        <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                            <children>
-                                                <Label text="Issue Date" textFill="#475569">
-                                                    <font>
-                                                        <Font name="System Bold" size="12.0" />
-                                                    </font>
-                                                </Label>
-                                                <DatePicker fx:id="dateIssue" prefHeight="38.0" prefWidth="380.0" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px;" />
-                                            </children>
-                                        </VBox>
-
-                                        <!-- Due Date -->
-                                        <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                            <children>
-                                                <Label text="Due Date" textFill="#475569">
-                                                    <font>
-                                                        <Font name="System Bold" size="12.0" />
-                                                    </font>
-                                                </Label>
-                                                <DatePicker fx:id="dateDue" prefHeight="38.0" prefWidth="380.0" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px;" />
+                                                <DatePicker fx:id="dateReturn" prefHeight="38.0" prefWidth="380.0" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8px;" />
                                             </children>
                                         </VBox>
                                     </children>
@@ -198,8 +175,8 @@
                                 <!-- Form Buttons -->
                                 <HBox spacing="15.0">
                                     <children>
-                                        <Button fx:id="btnIssueBook" mnemonicParsing="false" onAction="#btnIssuBooksOnAction" prefHeight="42.0" prefWidth="170.0" style="-fx-background-color: linear-gradient(to right, #F97316, #EA580C); -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(249,115,22,0.3), 10, 0, 0, 4);" text="Issue Book" />
-                                        <Button fx:id="btnClear" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="42.0" prefWidth="130.0" style="-fx-background-color: #E2E8F0; -fx-text-fill: #1E293B; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 8px;" text="Clear" />
+                                        <Button fx:id="btnReturnSubmit" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" style="-fx-background-color: linear-gradient(to right, #059669, #047857); -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(5,150,105,0.3), 10, 0, 0, 4);" text="Process Return" />
+                                        <Button fx:id="btnClear" mnemonicParsing="false" prefHeight="42.0" prefWidth="130.0" style="-fx-background-color: #E2E8F0; -fx-text-fill: #1E293B; -fx-cursor: hand; -fx-font-weight: bold; -fx-background-radius: 8px;" text="Clear" />
                                     </children>
                                     <VBox.margin>
                                         <Insets top="10.0" />
