@@ -162,7 +162,7 @@ public class ViewBookPageController implements Initializable {
         }
     }
 
-    @FXML void btnUpdateOnAction(ActionEvent event) { new Alert(Alert.AlertType.INFORMATION, "Update selected.").show(); }
+    @FXML void btnUpdateOnAction(ActionEvent event) { SceneManager.switchpage( "/view/update_book.fxml"); }
     @FXML void btnAddBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_book.fxml"); }
     @FXML void btnViewBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
     @FXML void btnAddMemberOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_member.fxml"); }
