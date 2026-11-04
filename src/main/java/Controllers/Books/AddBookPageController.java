@@ -33,6 +33,7 @@ public class AddBookPageController implements Initializable {
     @FXML private Button btnSaveBook;
     @FXML private Button btnViewBook;
     @FXML private Button btnViewMembers;
+    @FXML private Button btnUpdateBookNav; // Update පිටුවට යාමට නව Button එකක් එක් කරන ලදී
 
     @FXML private ComboBox<String> cmbCategory;
 
@@ -40,16 +41,14 @@ public class AddBookPageController implements Initializable {
     @FXML private TextField txtBookId;
     @FXML private TextField txtQuantity;
     @FXML private TextField txtTitle;
-    @FXML private DatePicker datePublish; // TextField එක වෙනුවට DatePicker එකට නිවැරදිව bind කර ඇත
+    @FXML private DatePicker datePublish;
 
     private Connection connection = DBConnection.getInstance().getConnection();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Load Categories into ComboBox on startup
         cmbCategory.setItems(loadCategoriesFromDB());
 
-        // Set default date to today if available
         if (datePublish != null) {
             datePublish.setValue(LocalDate.now());
         }
@@ -71,7 +70,6 @@ public class AddBookPageController implements Initializable {
             System.out.println("Error loading categories from DB: " + e.getMessage());
         }
 
-        // Fallback default categories if database is empty
         if (categoryList.isEmpty()) {
             categoryList.addAll("Romance", "Fantasy", "Science Fiction", "Mystery & Crime",
                     "Thriller & Suspense", "Horror", "Historical Fiction",
@@ -134,15 +132,16 @@ public class AddBookPageController implements Initializable {
 
         try {
             int quantity = Integer.parseInt(qtyStr);
+            int extractedYear = publishDate.getYear();
 
-            String sql = "INSERT INTO books (book_id, book_title, author, publish_year, quantity, category) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO books (book_id, book_title, author, category, published_year, quantity) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = connection.prepareStatement(sql);
             pst.setString(1, bookId);
             pst.setString(2, title);
             pst.setString(3, author);
-            pst.setString(4, publishDate.toString()); // DatePicker අගය string එකක් ලෙස (YYYY-MM-DD) save වේ
-            pst.setInt(5, quantity);
-            pst.setString(6, category);
+            pst.setString(4, category);
+            pst.setInt(5, extractedYear);
+            pst.setInt(6, quantity);
 
             if (pst.executeUpdate() > 0) {
                 new Alert(Alert.AlertType.INFORMATION, "Book added successfully to catalog!").show();
@@ -167,8 +166,15 @@ public class AddBookPageController implements Initializable {
         cmbCategory.getSelectionModel().clearSelection();
     }
 
-    // Navigation Action Methods
+    // Update පිටුවට යාමට අවශ්‍ය ක්‍රියාකාරීත්වය (Navigation Link)
+    @FXML
+    void btnUpdateBookOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/update_book_page.fxml");
+    }
+
+    // Navigation Action Rules mappings
     @FXML void btnPreviousOnAction(ActionEvent event) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
+    @FXML void btnDashboardOnAction(ActionEvent event) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
     @FXML void btnAddBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_book.fxml"); }
     @FXML void btnAddMemberOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_member.fxml"); }
     @FXML void btnViewBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
