@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import scene.SceneManager;
 
 import java.net.URL;
@@ -43,7 +40,7 @@ public class AddBookPageController implements Initializable {
     @FXML private TextField txtBookId;
     @FXML private TextField txtQuantity;
     @FXML private TextField txtTitle;
-    @FXML private TextField txtYear;
+    @FXML private DatePicker datePublish; // TextField එක වෙනුවට DatePicker එකට නිවැරදිව bind කර ඇත
 
     private Connection connection = DBConnection.getInstance().getConnection();
 
@@ -51,6 +48,11 @@ public class AddBookPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Load Categories into ComboBox on startup
         cmbCategory.setItems(loadCategoriesFromDB());
+
+        // Set default date to today if available
+        if (datePublish != null) {
+            datePublish.setValue(LocalDate.now());
+        }
     }
 
     private ObservableList<String> loadCategoriesFromDB() {
@@ -122,16 +124,15 @@ public class AddBookPageController implements Initializable {
         String title = txtTitle.getText().trim();
         String author = txtAuthor.getText().trim();
         String category = cmbCategory.getValue();
-        String yearStr = txtYear.getText().trim();
+        LocalDate publishDate = datePublish.getValue();
         String qtyStr = txtQuantity.getText().trim();
 
-        if (bookId.isEmpty() || title.isEmpty() || author.isEmpty() || category == null || yearStr.isEmpty() || qtyStr.isEmpty()) {
-            new Alert(Alert.AlertType.WARNING, "Please fill in all required fields!").show();
+        if (bookId.isEmpty() || title.isEmpty() || author.isEmpty() || category == null || publishDate == null || qtyStr.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all required fields and select a publish date!").show();
             return;
         }
 
         try {
-            int publishYear = Integer.parseInt(yearStr);
             int quantity = Integer.parseInt(qtyStr);
 
             String sql = "INSERT INTO books (book_id, book_title, author, publish_year, quantity, category) VALUES (?, ?, ?, ?, ?, ?)";
@@ -139,7 +140,7 @@ public class AddBookPageController implements Initializable {
             pst.setString(1, bookId);
             pst.setString(2, title);
             pst.setString(3, author);
-            pst.setInt(4, publishYear);
+            pst.setString(4, publishDate.toString()); // DatePicker අගය string එකක් ලෙස (YYYY-MM-DD) save වේ
             pst.setInt(5, quantity);
             pst.setString(6, category);
 
@@ -148,7 +149,7 @@ public class AddBookPageController implements Initializable {
                 btnClearOnAction(event);
             }
         } catch (NumberFormatException e) {
-            new Alert(Alert.AlertType.ERROR, "Publish Year and Quantity must be valid numbers!").show();
+            new Alert(Alert.AlertType.ERROR, "Quantity must be a valid number!").show();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Database Error: " + e.getMessage()).show();
         }
@@ -159,7 +160,9 @@ public class AddBookPageController implements Initializable {
         txtBookId.clear();
         txtTitle.clear();
         txtAuthor.clear();
-        txtYear.clear();
+        if (datePublish != null) {
+            datePublish.setValue(LocalDate.now());
+        }
         txtQuantity.clear();
         cmbCategory.getSelectionModel().clearSelection();
     }

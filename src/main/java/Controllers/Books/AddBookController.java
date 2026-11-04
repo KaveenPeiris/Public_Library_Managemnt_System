@@ -105,7 +105,8 @@ public class AddBookController implements Initializable {
     }
 
     public boolean addBook(String bookId, String title, String author, String category, String publishYearDate, int quantity) {
-        String sql = "INSERT INTO books (book_id, book_title, author, category, publish_year, quantity) VALUES (?, ?, ?, ?, ?, ?)";
+        // Database එකේ ඇති නිවැරදි column නම ('published_year') මෙහි යොදා ඇත[cite: 5]
+        String sql = "INSERT INTO books (book_id, book_title, author, category, published_year, quantity) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, bookId);
