@@ -31,6 +31,19 @@ public class ReturnBookPageController implements Initializable {
     @FXML private TableColumn<ReturnModel, String> colDueDate;
     @FXML private DatePicker dateReturn;
 
+    @FXML private Button btnDashboard;
+    @FXML private Button btnAddBookNav;
+    @FXML private Button btnAddMember;
+    @FXML private Button btnViewBook;
+    @FXML private Button btnViewMembers;
+    @FXML private Button btnManageMember;
+    @FXML private Button btnIssueBookNav;
+    @FXML private Button btnReturnBookNav;
+    @FXML private Button btnBrrowingHistory;
+    @FXML private Button btnLogout;
+    @FXML private Button btnPrevious;
+    @FXML private Button btnProcessReturn;
+
     private Connection connection = DBConnection.getInstance().getConnection();
     private ObservableList<ReturnModel> returnList = FXCollections.observableArrayList();
 
@@ -124,14 +137,17 @@ public class ReturnBookPageController implements Initializable {
     }
 
     // Navigation Handlers
-    public void btnAddBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/add_book.fxml"); }
-    public void btnViewBookOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
-    public void btnViewMembersOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/view_members.fxml"); }
-    public void btnIssueBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/issu_book.fxml"); }
-    public void btnReturnBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/return_book.fxml"); }
-    public void btnPreviousOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
-    public void btnLogoutOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/login_page.fxml"); }
-    public void btnLogOutOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/login_page.fxml"); }
+    @FXML public void btnAddBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/add_book.fxml"); }
+    @FXML public void btnViewBookOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
+    @FXML public void btnViewMembersOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/view_members.fxml"); }
+    @FXML public void btnIssueBookNavOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/issu_book.fxml"); }
+    @FXML public void btnReturnBookOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/return_book.fxml"); }
+    @FXML public void btnPreviousOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
+    @FXML public void btnLogoutOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/login_page.fxml"); }
+    @FXML public void btnLogOutOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/login_page.fxml"); }
+    @FXML public void btnAddMemberOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/add_member.fxml"); }
+    @FXML public void btnManageMemberOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/manage_members.fxml"); }
+    @FXML public void btnBrrowingHistoryOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/borrowing_history.fxml"); }
 
     public static class ReturnModel {
         private String issueId, memberId, memberName, bookId, bookTitle, issueDate, dueDate;
