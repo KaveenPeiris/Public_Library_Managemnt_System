@@ -166,13 +166,13 @@ public class AddBookPageController implements Initializable {
         cmbCategory.getSelectionModel().clearSelection();
     }
 
-    // Update පිටුවට යාමට අවශ්‍ය ක්‍රියාකාරීත්වය (Navigation Link)
+
     @FXML
     void btnUpdateBookOnAction(ActionEvent event) {
         SceneManager.switchpage("/view/update_book_page.fxml");
     }
 
-    // Navigation Action Rules mappings
+
     @FXML void btnPreviousOnAction(ActionEvent event) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
     @FXML void btnDashboardOnAction(ActionEvent event) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
     @FXML void btnAddBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_book.fxml"); }
