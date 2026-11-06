@@ -44,7 +44,7 @@ public class BrrowingHistoryPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Setup Table Columns
+
         colMemberId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
         colBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
         colIssueDate.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
@@ -57,7 +57,6 @@ public class BrrowingHistoryPageController implements Initializable {
 
         loadBorrowingHistory("");
 
-        // Search listener
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             loadBorrowingHistory(newValue);
         });
@@ -101,18 +100,28 @@ public class BrrowingHistoryPageController implements Initializable {
         }
     }
 
-    @FXML void btnAddBookNavOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_book.fxml"); }
-    @FXML void btnAddMemberOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_member.fxml"); }
-    @FXML void btnBrrowingHistoryOnAction(ActionEvent event) { SceneManager.switchpage("/view/borrowing_history.fxml"); }
-    @FXML void btnIssueBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/issu_book_view.fxml"); }
-    @FXML void btnLogoutOnAction(ActionEvent event) { SceneManager.switchpage("/view/login_page.fxml"); }
-    @FXML void btnManageMemberOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_members.fxml"); }
-    @FXML void btnPreviousOnAction(ActionEvent event) { SceneManager.switchpage("/view/issu_book_view.fxml"); }
-    @FXML void btnReturnBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/return_book.fxml"); }
-    public void btnViewBookOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
-    public void btnViewMembersOnAction(ActionEvent actionEvent) { SceneManager.switchpage("/view/view_members.fxml"); }
+    @FXML void btnAddBookNavOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/add_book.fxml"); }
+    @FXML void btnAddMemberOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/add_member.fxml"); }
+    @FXML void btnBrrowingHistoryOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/borrowing_history.fxml"); }
+    @FXML void btnIssueBookOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/issu_book_view.fxml"); }
+    @FXML void btnLogoutOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/login_page.fxml"); }
+    @FXML void btnManageMemberOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/view_members.fxml"); }
+    @FXML void btnPreviousOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/issu_book_view.fxml"); }
+    @FXML void btnReturnBookOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/return_book.fxml"); }
+    public void btnViewBookOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/view_add_book_page.fxml"); }
+    public void btnViewMembersOnAction(ActionEvent actionEvent) {
+        SceneManager.switchpage("/view/view_members.fxml"); }
 
-    // Inner Model Class for TableView
+
     public static class BorrowingModel {
         private String memberId, bookTitle, issueDate, dueDate, returnDate, status;
 
