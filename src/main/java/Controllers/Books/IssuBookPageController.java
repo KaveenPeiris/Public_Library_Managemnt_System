@@ -124,17 +124,28 @@ public class IssuBookPageController implements Initializable {
     }
 
 
-    @FXML void btnAddBookNavOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_book.fxml"); }
-    @FXML void btnViewBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
-    @FXML void btnAddMemberOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_member.fxml"); }
-    @FXML void btnViewMembersOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_members.fxml"); }
-    @FXML void btnManageMemberOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_members.fxml"); }
-    @FXML void btnIssueBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/issu_book_view.fxml"); }
-    @FXML void btnReturnBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/return_book.fxml"); }
-    @FXML void btnBrrowingHistoryOnAction(ActionEvent event) { SceneManager.switchpage("/view/borrowing_history.fxml"); }
-    @FXML void btnPreviousOnAction(ActionEvent event) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
-    @FXML void btnLogoutOnAction(ActionEvent event) { SceneManager.switchpage("/view/login_page.fxml"); }
-    @FXML void btnLogOutOnAction(ActionEvent event) { SceneManager.switchpage("/view/login_page.fxml"); }
+    @FXML void btnAddBookNavOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/add_book.fxml"); }
+    @FXML void btnViewBookOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/view_add_book_page.fxml"); }
+    @FXML void btnAddMemberOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/add_member.fxml"); }
+    @FXML void btnViewMembersOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/view_members.fxml"); }
+    @FXML void btnManageMemberOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/view_members.fxml"); }
+    @FXML void btnIssueBookOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/issu_book_view.fxml"); }
+    @FXML void btnReturnBookOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/return_book.fxml"); }
+    @FXML void btnBrrowingHistoryOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/borrowing_history.fxml"); }
+    @FXML void btnPreviousOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/main_dashbord.fxml"); }
+    @FXML void btnLogoutOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/login_page.fxml"); }
+    @FXML void btnLogOutOnAction(ActionEvent event) {
+        SceneManager.switchpage("/view/login_page.fxml"); }
     @FXML void cmbBookOnAction(ActionEvent event) {}
     @FXML void cmbMemebrOnAction(ActionEvent event) {}
 }
