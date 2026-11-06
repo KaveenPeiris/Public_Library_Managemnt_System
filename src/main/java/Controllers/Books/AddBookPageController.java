@@ -167,21 +167,8 @@ public class AddBookPageController implements Initializable {
     }
 
 
-    @FXML
-    void btnUpdateBookOnAction(ActionEvent event) {
-        SceneManager.switchpage("/view/update_book_page.fxml");
-    }
 
 
-    @FXML void btnPreviousOnAction(ActionEvent event) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
-    @FXML void btnDashboardOnAction(ActionEvent event) { SceneManager.switchpage("/view/main_dashbord.fxml"); }
-    @FXML void btnAddBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_book.fxml"); }
-    @FXML void btnAddMemberOnAction(ActionEvent event) { SceneManager.switchpage("/view/add_member.fxml"); }
-    @FXML void btnViewBookOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_add_book_page.fxml"); }
-    @FXML void btnViewMembersOnAction(ActionEvent event) { SceneManager.switchpage("/view/view_members.fxml"); }
-    @FXML void btnManageMembersOnAction(ActionEvent event) { SceneManager.switchpage("/view/manage_members.fxml"); }
-    @FXML void btnIssuBooksOnAction(ActionEvent event) { SceneManager.switchpage("/view/issu_book.fxml"); }
-    @FXML void btnReturnBooksOnAction(ActionEvent event) { SceneManager.switchpage("/view/return_book.fxml"); }
-    @FXML void btnBorrowingHistoryOnAction(ActionEvent event) { SceneManager.switchpage("/view/borrowing_history.fxml"); }
-    @FXML void btnLogoutOnAction(ActionEvent event) { SceneManager.switchpage("/view/login_page.fxml"); }
+
+
 }
